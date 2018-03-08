@@ -1,0 +1,10 @@
+{
+  "name": "mb",
+  "type": "project",
+  "autoload": {
+    "psr-4": {"MB\\": "src/"}
+  },
+  "require": {
+    "php": "~7.0.8"
+  }
+}

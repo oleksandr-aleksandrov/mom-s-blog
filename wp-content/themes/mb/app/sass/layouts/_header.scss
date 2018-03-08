@@ -1,0 +1,74 @@
+body, html {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
+  color: $black-color;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1 0 auto;
+  position: relative;
+}
+
+h1 {
+  font-size: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  color: $black-color;
+  font-weight: 400;
+}
+
+
+
+.header-sticky {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.uk-search-large .uk-header-search-field {
+  font-size: 24px;
+}
+
+.uk-header-menu,
+.uk-header-mobile-menu {
+  li {
+    a {
+      text-transform: none;
+    }
+  }
+}
+
+.uk-header-mobile-menu {
+  li {
+    a {
+      height: 22px;
+      padding: 25px 10px;
+    }
+  }
+}
+
+.current {
+  font-weight: 600;
+  color: $black-color !important;
+}
+
+.home {
+  footer {
+    display: none;
+  }
+  main {
+    background-image: url('https://upload.wikimedia.org/wikipedia/ru/1/13/%D0%A2%D0%B8%D0%BC%D0%BE%D0%BD.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+  }
+}

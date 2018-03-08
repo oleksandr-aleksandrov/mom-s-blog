@@ -11,50 +11,66 @@
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html lang="uk">
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
-
-	<?php wp_head(); ?>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
+<header uk-sticky="top: 100; animation: uk-animation-slide-top; cls-active:sticky-nav header-sticky">
+    <nav class="uk-container" uk-navbar>
+        <?php $logo = wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'logo'); ?>
+        <div class="uk-navbar-left@m uk-navbar-center@s">
+            <a class="uk-navbar-item uk-logo" href="<?php bloginfo('url'); ?>">
+                <img src="<?php echo $logo[0]; ?>" alt="<?php bloginfo('name'); ?>"/>
+            </a>
+        </div>
+        <div class="uk-navbar-right uk-visible@m">
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'main_menu',
+                'container' => false,
+                'menu_class' => 'uk-navbar-nav uk-header-menu uk-header-menu-current',
+            ));
 
-	<header class="site-header uk-container">
+            ?>
+        </div>
 
-		<nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <a class="uk-navbar-toggle uk-visible@m" href="#modal-full-search" uk-search-icon uk-toggle></a>
+        <a href="#modal-full-mobile-menu" class="uk-hidden@m uk-navbar-right uk-text-muted uk-padding-large" uk-toggle>
+            <span uk-navbar-toggle-icon></span>
+            <span class="uk-margin-small-left"></span>
+        </a>
+        <div id="modal-full-mobile-menu" class="uk-modal-full uk-modal" uk-modal>
+            <button class="uk-modal-close-full uk-padding-large" type="button" uk-close></button>
+            <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'main_menu',
+                    'container' => false,
+                    'menu_class' => 'uk-navbar-nav uk-header-mobile-menu uk-header-menu-current uk-hidden@m uk-flex-column uk-width-1-1',
+                ));
+                ?>
+            </div>
+        </div>
+    </nav>
+    <div id="modal-full-search" class="uk-modal-full uk-modal" uk-modal>
+        <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+            <button class="uk-modal-close-full uk-padding-large" type="button" uk-close></button>
+            <form role="search" method="get" class="search-form uk-search uk-search-large uk-visible@m"
+                  action="<?php echo home_url('/'); ?>">
+                <input type="search" autofocus
+                       class="search-field uk-header-search-field uk-search-input uk-text-center"
+                       placeholder="<?php echo esc_attr_x('Введiть пошуковий запит та натиснiть Enter', 'placeholder') ?>"
+                       value="<?php echo get_search_query() ?>" name="s">
+            </form>
+        </div>
+    </div>
+</header>
 
-			<div class="uk-navbar-left">
-				<a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav" uk-navbar-toggle-icon href="#"></a>
-			</div>
-			<div class="uk-navbar-right" uk-grid>
-				<?php if (function_exists('mb_breadcrumbs')) mb_breadcrumbs(); ?>
-			</div>
-			<div id="offcanvas-nav" uk-offcanvas="overlay: true">
-				<div class="uk-offcanvas-bar">
-
-					<ul class="uk-nav uk-nav-default">
-						<li class="uk-active"><a href="#">Active</a></li>
-						<li class="uk-parent">
-							<a href="#">Parent</a>
-							<ul class="uk-nav-sub">
-								<li><a href="#">Sub item</a></li>
-								<li><a href="#">Sub item</a></li>
-							</ul>
-						</li>
-						<li class="uk-nav-header">Header</li>
-						<li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
-						<li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
-						<li class="uk-nav-divider"></li>
-						<li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
-					</ul>
-
-				</div>
-			</div>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<main>
+<main>

@@ -14,9 +14,17 @@
 </main>
 
 <footer>
-	<div class="site-info uk-container">
-		
-	</div>
+    <div class="site-info uk-container">
+
+    </div>
+    <div class="uk-copyright">
+        <div class="uk-container">
+            <span>
+                <?php _e('Tetiana Aleksandrova © ', 'mb');
+                echo date(Y); ?>
+            </span>
+        </div>
+    </div>
 </footer><!-- #colophon -->
 
 

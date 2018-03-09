@@ -9,40 +9,70 @@
 
 get_header(); ?>
 
-<div class="uk-container">
 
-	<?php
-	if ( have_posts() ) : ?>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1 class="uk-text-center">
+                Welcome to the Blog
+            </h1>
+            <p class="uk-text-center">
+                Слоган про свiй БЛОГ
+            </p>
+        </div>
+    </section>
 
-	<header class="page-header">
-		<?php
-		the_archive_title( '<h1 class="page-title">', '</h1>' );
-		the_archive_description( '<div class="archive-description">', '</div>' );
-		?>
-	</header><!-- .page-header -->
+    <div class="uk-container uk-margin-medium-bottom">
+    <div uk-grid>
+        <div class="uk-width-1-4 uk-visible@m">
+            <ul>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+                <li>lorem ssdas a da sd</li>
+            </ul>
+        </div>
+        <div class="mb-archive-page uk-width-1-1 uk-width-3-4@m">
+            <?php
+            if (have_posts()) : ?>
 
-	<?php
-	/* Start the Loop */
-	while ( have_posts() ) : the_post();
+                <!--	<header class="page-header">-->
+                <!--		--><?php
+//		the_archive_title( '<h1 class="page-title">', '</h1>' );
+//		the_archive_description( '<div class="archive-description">', '</div>' );
+//		?>
+                <!--	</header>-->
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+                <?php
+                /* Start the Loop */
+                while (have_posts()) : the_post();
 
-			endwhile;
+                    switch (get_post_type()) {
+                        case 'vi_news':
+                            render_partial('template-parts/news_content', ['post' => get_post()]);
+                            break;
+                        case 'photo':
+                            render_partial('template-parts/1_4_', ['post' => get_post()]);
+                            break;
 
-			the_posts_navigation();
+                    }
+                endwhile; ?>
 
-		else :
+                <?php
+            else :
 
-			get_template_part( 'template-parts/content', 'none' );
+                get_template_part('template-parts/content', 'none');
 
-			endif; ?>
-		</div>
+            endif; ?>
+            <div class="infinite-loader uk-margin-medium-top uk-margin-small-bottom uk-flex uk-flex-center"
+                 uk-spinner></div>
 
-		<?php
-		get_sidebar();
-		get_footer();
+        </div>
+    </div>
+<?php
+get_footer();

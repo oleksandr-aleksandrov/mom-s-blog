@@ -24,7 +24,7 @@
 			if ( has_post_thumbnail() ) { echo get_the_post_thumbnail($page->ID, 'medium',array('class' => 'uk-image-blog uk-box-shadow-medium')); }
 			else { ?>
 			<img class="uk-image-blog uk-box-shadow-medium" src="<?php bloginfo('template_url') ?>/app/img/wheat11.jpg" alt="">
-			<?php } 
+			<?php }
 			?>
 		</div>
 
@@ -44,7 +44,7 @@
 			endif; ?>
 			<?php
 			(is_single() &&'post' === get_post_type() )
-			?  the_content()  
+			?  the_content()
 			:the_truncated_post( 200 ) ;
 			?>
 		</div><!-- .entry-content -->

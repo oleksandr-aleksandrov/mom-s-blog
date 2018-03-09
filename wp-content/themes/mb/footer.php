@@ -21,7 +21,7 @@
         <div class="uk-container">
             <span>
                 <?php _e('Tetiana Aleksandrova © ', 'mb');
-                echo date(Y); ?>
+                echo date('Y'); ?>
             </span>
         </div>
     </div>

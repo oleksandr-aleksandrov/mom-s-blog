@@ -2,3 +2,45 @@
 .uk-description-front {
   height: calc(100vh - 80px);
 }
+
+/* --== /FRONT-PAGE ==-- */
+/* --== ARCHIVE-PAGE ==-- */
+article {
+  h2 {
+    a {
+      color: #263238;
+      font-weight: 500;
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.uk-custom-subnav-divider > :nth-child(n+2):not(.uk-first-column)::before {
+  transform: rotate(10deg);
+}
+
+.uk-button-more {
+  color: #09C;
+  border: 2px solid #09C;
+  border-color: rgba(0, 153, 204, 0.7);
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  padding: 6px 17px;
+  font-size: 14px;
+  display: inline-block;
+  background: none;
+  cursor: pointer;
+  transition: background-color .1s linear, color .1s linear;
+  &:hover {
+    background-color: #dcf6ff;
+    border-color: #09c;
+    text-decoration: none;
+  }
+}
+
+/* --== /ARCHIVE-PAGE ==-- */

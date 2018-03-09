@@ -7,6 +7,9 @@
  * @package MB
  */
 
+require_once "functions/functions-patrial.php";
+require_once "functions/functions-load-more.php";
+
 if (!function_exists('mb_setup')) :
     /**
      * Sets up theme defaults and registers support for various WordPress features.
@@ -87,7 +90,7 @@ if (!function_exists('mb_setup')) :
 
 // Register new size img
         add_image_size('logo', 70, 70);
-//        add_image_size('300_200', 300, 200, true);
+        add_image_size('archive_news_thumbnails', 9999, 500, true);
 //        add_image_size('deputies_thumb', 250, 300, true);
 //        add_image_size('deputies_thumb_single', 400, 450, true);
 //        add_image_size('archive-news', 370, 240, true);
@@ -116,6 +119,7 @@ function render_template_part($template, $params = [])
     return ob_get_clean();
 }
 
+remove_filter('the_excerpt', 'wpautop');
 /**
  * Register widget area.
  *
@@ -142,7 +146,6 @@ add_action('widgets_init', 'mb_widgets_init');
  */
 //////////
 new \MB\PostType\News();
-//new \MB\PostType\Deputy();
 new \MB\PostType\Albums();
 //////////
 
@@ -154,19 +157,31 @@ function mb_scripts()
 {
     // wp_enqueue_style( 'mb-style', get_stylesheet_uri() );
     wp_enqueue_style('PTSans', 'https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=cyrillic,latin-ext');
+
     wp_enqueue_style('OpenSans', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=cyrillic');
+
     wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
     wp_enqueue_style('uikit-css', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css');
+
     wp_register_style('main-css', get_template_directory_uri() . '/app/css/main.css');
     wp_enqueue_style('main-css');
+
     wp_enqueue_script('mb-navigation', get_template_directory_uri() . '/app/js/navigation.js', array(), '20151215', true);
-    wp_register_script('main-js', get_template_directory_uri() . '/app/js/main.js');
+
+    wp_register_script('main-js', get_template_directory_uri() . '/app/js/main.js', array('jquery'), null, true);
     wp_enqueue_script('main-js');
+
     wp_enqueue_script('uikit-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js', true);
+
     wp_enqueue_script('html5shiv', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js');
+
     wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
+
     wp_enqueue_script('respond', 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js');
+
     wp_script_add_data('respond', 'conditional', 'lt IE 9');
+
     wp_enqueue_script('mb-skip-link-focus-fix', get_template_directory_uri() . '/app/js/skip-link-focus-fix.js', array(), '20151215', true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {

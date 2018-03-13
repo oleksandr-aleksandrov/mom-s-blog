@@ -1,4 +1,64 @@
 /* --== COLORS ==-- */
+.uk-round-3px {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+/* --== SEARCH-HEADER ==-- */
+.uk-modal-dialog-custom-color {
+  background-color: rgba(0, 0, 0, 0.87);
+}
+
+.uk-modal-close-full-custom {
+  background-color: transparent;
+  color: #fff;
+}
+
+.uk-modal-close-full-custom:hover {
+  color: #09c;
+}
+
+.uk-search-large .uk-header-search-field {
+  font-size: 24px;
+}
+
+.mb-search-description-header {
+  color: #fff;
+  font-size: 20px;
+}
+
+.uk-header-search-field {
+  border: 3px solid #ebebeb;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.mb-button-search {
+  background-color: #09c;
+  -webkit-appearance: none;
+  outline: 0;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  width: 120px;
+  height: 50px;
+  border: none;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.mb-button-search:hover {
+  background-color: deepskyblue;
+}
+
+.mb-small-icon-arrow {
+  color: #fff;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+/* --== /SEARCH-HEADER ==-- */
 body, html {
   font-family: 'PT Sans', sans-serif;
   font-size: 16px;
@@ -44,10 +104,6 @@ h2, h3, h4, h5, h6 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.uk-search-large .uk-header-search-field {
-  font-size: 24px;
-}
-
 .uk-header-menu li a,
 .uk-header-mobile-menu li a {
   text-transform: none;
@@ -56,11 +112,27 @@ h2, h3, h4, h5, h6 {
 .uk-header-mobile-menu li a {
   height: 22px;
   padding: 25px 10px;
+  color: #fff;
 }
 
 .current {
-  font-weight: 600;
   color: #000 !important;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.current:bafore {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #09c;
+  margin-top: -2px;
 }
 
 .home footer {
@@ -86,7 +158,7 @@ h2, h3, h4, h5, h6 {
 }
 
 /* --== /FRONT-PAGE ==-- */
-/* --== ARCHIVE-PAGE ==-- */
+/* --== ARCHIVE-PAGE-NEWS ==-- */
 article h2 a {
   color: #263238;
   font-weight: 500;
@@ -103,8 +175,8 @@ article h2 a:hover {
 }
 
 .uk-button-more {
-  color: #09C;
-  border: 2px solid #09C;
+  color: #09c;
+  border: 2px solid #09c;
   border-color: rgba(0, 153, 204, 0.7);
   letter-spacing: 0.5px;
   line-height: 1.5;
@@ -121,12 +193,88 @@ article h2 a:hover {
 }
 
 .uk-button-more:hover {
-  background-color: #dcf6ff;
+  background-color: #ccf2ff;
   border-color: #09c;
   text-decoration: none;
 }
 
-/* --== /ARCHIVE-PAGE ==-- */
+.infinite-loader {
+  display: none;
+}
+
+.uk-my-article {
+  margin-top: 70px;
+}
+
+.uk-my-article:first-child {
+  margin-top: 0px;
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item {
+  padding-left: 5px;
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item:first-child {
+  padding-left: 20px;
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item:before {
+  margin-right: 0 !important;
+  border-left: 0 !important;
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item:after {
+  content: ',';
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item a {
+  font-size: 15px;
+  text-transform: none !important;
+  color: #09c !important;
+  border-bottom: 2px solid #e9f7fd;
+  -webkit-transition-property: border-color;
+  -o-transition-property: border-color;
+  transition-property: border-color;
+  -webkit-transition-duration: .1s;
+       -o-transition-duration: .1s;
+          transition-duration: .1s;
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item a:hover {
+  border-color: #09c;
+}
+
+/* --== /ARCHIVE-PAGE-NEWS ==-- */
+/* --== ARCHIVE-PAGE-ALBUMS ==-- */
+.mb-album {
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.mb-album-photo {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  color: #fff;
+  font-weight: 900;
+}
+
+.mb-album-photo:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  background: #09c;
+  height: 5px;
+  width: 40px;
+}
+
+.mb-album-icon {
+  font-size: 20px;
+}
+
+/* --== /ARCHIVE-PAGE-ALBUMS ==-- */
 /* --== WP WYSIWYG Editor Styles ==-- */
 .entry-content img {
   margin: 0 0 1.5em 0;
@@ -195,3 +343,8 @@ blockquote.right {
 }
 
 /* --== /WP WYSIWYG Editor Styles ==-- */
+@media screen and (max-width: 767px) {
+  .home main {
+    background-image: none;
+  }
+}

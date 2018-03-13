@@ -9,6 +9,7 @@
 
 require_once "functions/functions-patrial.php";
 require_once "functions/functions-load-more.php";
+require_once "functions/functions-ajax-taxonomy.php";
 
 if (!function_exists('mb_setup')) :
     /**
@@ -51,6 +52,9 @@ if (!function_exists('mb_setup')) :
 
             'main_menu' => esc_html__('Header', 'mb'),
             'footer_menu' => esc_html__('Footer', 'mb'),
+            'photoalbums_menu' => esc_html__('Photoalbums Nav', 'mb'),
+            'news_menu' => esc_html__('News Nav', 'mb'),
+
 
         ));
         add_theme_support('post-thumbnails');
@@ -90,7 +94,8 @@ if (!function_exists('mb_setup')) :
 
 // Register new size img
         add_image_size('logo', 70, 70);
-        add_image_size('archive_news_thumbnails', 9999, 500, true);
+        add_image_size('archive_news_thumbnails', 1100, 500, true);
+        add_image_size('archive_photo_thumbnails', 600, 500, true);
 //        add_image_size('deputies_thumb', 250, 300, true);
 //        add_image_size('deputies_thumb_single', 400, 450, true);
 //        add_image_size('archive-news', 370, 240, true);

@@ -29,14 +29,8 @@ h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
-
-
 .header-sticky {
   background-color: rgba(255, 255, 255, 0.9);
-}
-
-.uk-search-large .uk-header-search-field {
-  font-size: 24px;
 }
 
 .uk-header-menu,
@@ -53,13 +47,26 @@ h2, h3, h4, h5, h6 {
     a {
       height: 22px;
       padding: 25px 10px;
+      color: $white-color;
     }
   }
 }
 
 .current {
-  font-weight: 600;
   color: $black-color !important;
+  position: relative;
+  background-color: rgba($white-color, 0.8);
+  &:bafore {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    transition: all .2s ease;
+    background: $main-color-blue;
+    margin-top: -2px;
+  }
 }
 
 .home {

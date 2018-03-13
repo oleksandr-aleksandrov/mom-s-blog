@@ -4,7 +4,7 @@
 }
 
 /* --== /FRONT-PAGE ==-- */
-/* --== ARCHIVE-PAGE ==-- */
+/* --== ARCHIVE-PAGE-NEWS ==-- */
 article {
   h2 {
     a {
@@ -22,8 +22,8 @@ article {
 }
 
 .uk-button-more {
-  color: #09C;
-  border: 2px solid #09C;
+  color: $main-color-blue;
+  border: 2px solid $main-color-blue;
   border-color: rgba(0, 153, 204, 0.7);
   letter-spacing: 0.5px;
   line-height: 1.5;
@@ -37,10 +37,103 @@ article {
   cursor: pointer;
   transition: background-color .1s linear, color .1s linear;
   &:hover {
-    background-color: #dcf6ff;
-    border-color: #09c;
+    background-color: lighten($main-color-blue, 50%);
+    border-color: $main-color-blue;
     text-decoration: none;
   }
 }
 
-/* --== /ARCHIVE-PAGE ==-- */
+.infinite-loader {
+  display: none;
+}
+
+.uk-my-article {
+  margin-top: 70px;
+  &:first-child {
+    margin-top: 0px;
+  }
+}
+
+.uk-custom-subnav > .uk-taxonomy-news-item {
+  &:first-child {
+    padding-left: 20px;
+  }
+  &:before {
+    margin-right: 0 !important;
+    border-left: 0 !important;
+  }
+  &:after {
+    content: ',';
+  }
+
+  padding-left: 5px;
+  a {
+    font-size: 15px;
+    text-transform: none !important;
+    color: $main-color-blue !important;
+    border-bottom: 2px solid #e9f7fd;
+    transition-property: border-color;
+    transition-duration: .1s;
+    &:hover {
+      border-color: $main-color-blue;
+    }
+  }
+}
+
+//.uk-taxonomy-news {
+//  padding: 0;
+//  list-style: none;
+//  li {
+//    padding-left: 5px;
+//    &:after {
+//      content: ',';
+//    }
+//    &:last-child:after {
+//      content: ' ';
+//    }
+//  }
+//  a {
+//    font-size: 15px;
+//    text-transform: none;
+//    color: $main-color-blue !important;
+//    border-bottom: 2px solid #e9f7fd;
+//    /* box-shadow: inset 0 -3px 0 #e9f7fd; */
+//    transition-property: border-color;
+//    transition-duration: .1s;
+//    &:hover {
+//      border-color: $main-color-blue;
+//    }
+//  }
+//}
+
+/* --== /ARCHIVE-PAGE-NEWS ==-- */
+
+/* --== ARCHIVE-PAGE-ALBUMS ==-- */
+
+.mb-album {
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  &-photo {
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    color: #fff;
+    font-weight: 900;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      background: #09c;
+      height: 5px;
+      width: 40px;
+    }
+  }
+  &-icon {
+    font-size: 20px;
+
+  }
+}
+
+/* --== /ARCHIVE-PAGE-ALBUMS ==-- */

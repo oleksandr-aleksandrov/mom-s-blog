@@ -2,12 +2,7 @@
 
 function load_more_js()
 {
-
     global $wp_query;
-
-
-//    wp_enqueue_script('jquery');
-
     wp_register_script('load-more', get_stylesheet_directory_uri() . '/app/js/load-more.js', array('jquery'));
 
     wp_localize_script('load-more', 'MAIN', array(
@@ -38,6 +33,9 @@ function true_load_posts()
             switch (get_post_type()) {
                 case 'vi_news':
                     render_partial('template-parts/news_content', ['post' => get_post()]);
+                    break;
+                case 'photo':
+                    render_partial('template-parts/1_4_album', ['post' => get_post()]);
                     break;
             }
         endwhile;

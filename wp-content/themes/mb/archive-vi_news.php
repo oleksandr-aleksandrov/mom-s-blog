@@ -44,9 +44,10 @@ get_header(); ?>
                 get_template_part('template-parts/content', 'none');
 
             endif; ?>
-            <div class="infinite-loader uk-margin-medium-top uk-margin-medium-bottom uk-text-center"
-                 uk-spinner></div>
         </div>
+
+
     </div>
+<?php echo render_template_part('spinner_3_4'); ?>
 <?php
 get_footer();

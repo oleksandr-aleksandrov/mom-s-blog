@@ -244,6 +244,12 @@ article h2 a:hover {
   border-color: #09c;
 }
 
+.uk-my-article img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+}
+
 /* --== /ARCHIVE-PAGE-NEWS ==-- */
 /* --== ARCHIVE-PAGE-ALBUMS ==-- */
 .mb-album {
@@ -275,6 +281,84 @@ article h2 a:hover {
 }
 
 /* --== /ARCHIVE-PAGE-ALBUMS ==-- */
+/* --== ARCHIVES-MENUS ==-- */
+#sidemenu {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#sidemenu ul {
+  list-style: none;
+  padding: 0;
+}
+
+#sidemenu ul li a {
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  display: block;
+  color: #777;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 300;
+  letter-spacing: 0.15px;
+  -o-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+#sidemenu .sub-menu {
+  display: none;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 0;
+}
+
+#sidemenu .sub-menu a {
+  color: #7C7C7C;
+  font-size: 16px;
+}
+
+#sidemenu .sub-menu a:hover {
+  color: #09c;
+}
+
+#sidemenu li.current-menu-item a {
+  color: #000 !important;
+}
+
+#sidemenu li.current-menu-parent .sub-menu {
+  display: block;
+}
+
+#sidemenu li.opened > a, #sidemenu li.current-menu-parent > a, #sidemenu > ul > li.current-menu-item > a {
+  color: #3D464D;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+#sidemenu > ul > li > a:hover:after, #sidemenu > ul > li.opened > a:after, #sidemenu > ul > li.current-menu-parent > a:after, #sidemenu > ul > li.current-menu-item > a:after {
+  top: 0;
+  bottom: 0;
+}
+
+#sidemenu > ul > li > a:after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  bottom: 50%;
+  width: 3px;
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #09c;
+  margin-left: -2px;
+}
+
+/* --== /ARCHIVES-MENUS ==-- */
 /* --== WP WYSIWYG Editor Styles ==-- */
 .entry-content img {
   margin: 0 0 1.5em 0;
@@ -343,7 +427,7 @@ blockquote.right {
 }
 
 /* --== /WP WYSIWYG Editor Styles ==-- */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 959px) {
   .home main {
     background-image: none;
   }

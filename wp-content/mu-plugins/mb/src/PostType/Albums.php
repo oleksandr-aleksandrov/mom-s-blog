@@ -12,16 +12,12 @@ class Albums implements IPostType
         /**
          *
          */
-        add_action( 'init', [$this, 'register_post_type'] );
-         /**
+        add_action('init', [$this, 'register_post_type']);
+        /**
          *
          */
-         // add_action( 'acf/init', [$this, 'register_fields_deputies'] );
-         /**
-         *
-         */
-         // add_action( 'init', [$this, 'add_taxonomy_district'] );
-     }
+        add_action('init', [$this, 'add_photo_taxonomy']);
+    }
 
     /**
      * @return mixed
@@ -62,4 +58,19 @@ class Albums implements IPostType
         ]);
     }
 
+    /**
+     *
+     */
+    public function add_photo_taxonomy()
+    {
+        \register_taxonomy('photo_category', 'photo', [
+            'hierarchical' => true,
+            'label' => __('Категорії фото', 'mb'),
+            'query_var' => true,
+            'show_admin_column' => true,
+            'show_in_nav_menus' => true,
+            'show_tagcloud' => true,
+            'rewrite' => ['slug' => 'photo-category']
+        ]);
+    }
 }

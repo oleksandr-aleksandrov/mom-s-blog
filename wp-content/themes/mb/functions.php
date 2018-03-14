@@ -9,7 +9,6 @@
 
 require_once "functions/functions-patrial.php";
 require_once "functions/functions-load-more.php";
-require_once "functions/functions-ajax-taxonomy.php";
 
 if (!function_exists('mb_setup')) :
     /**

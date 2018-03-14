@@ -6,10 +6,8 @@
         </h2>
         <ul class="uk-article-meta uk-subnav uk-custom-subnav uk-subnav-divider uk-custom-subnav-divider uk-archive-meta">
             <?php $taxonomies = get_the_terms(get_the_ID(), 'news-category');
-
             if (!empty($taxonomies)) :
                 $taxonomies = get_the_terms(get_the_ID(), 'news-category');
-
                 foreach ($taxonomies as $taxonomy) :
                     ?>
                     <li class="uk-taxonomy-news-item">

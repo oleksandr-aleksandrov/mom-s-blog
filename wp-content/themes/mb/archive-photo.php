@@ -33,14 +33,9 @@ get_header(); ?>
                     /* Start the Loop */
                     while (have_posts()) : the_post();
 
-                        switch (get_post_type()) {
-//                        case 'vi_news':
-//                            render_partial('template-parts/news_content', ['post' => get_post()]);
-//                            break;
-                            case 'photo':
-                                render_partial('template-parts/1_4_album', ['post' => get_post()]);
-                                break;
-
+                        {
+                            render_partial('template-parts/1_4_album', ['post' => get_post()]);
+                            
                         }
                     endwhile; ?>
 
@@ -50,10 +45,12 @@ get_header(); ?>
                     get_template_part('template-parts/content', 'none');
 
                 endif; ?>
-                <div class="infinite-loader uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-width-1-1"
-                     uk-spinner></div>
+
             </div>
+
         </div>
+
     </div>
+<?php echo render_template_part('spinner_3_4'); ?>
 <?php
 get_footer();

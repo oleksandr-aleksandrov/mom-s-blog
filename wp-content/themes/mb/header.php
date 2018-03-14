@@ -22,7 +22,7 @@
 
 <body <?php body_class(); ?>>
 
-<header uk-sticky="top: 100; animation: uk-animation-slide-top; cls-active:sticky-nav header-sticky">
+<header uk-sticky="animation: uk-animation-slide-top; cls-active:sticky-nav header-sticky">
     <nav class="uk-container" uk-navbar>
         <?php $logo = wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'logo'); ?>
         <div class="uk-navbar-left@m uk-navbar-center@s">
@@ -47,8 +47,10 @@
             <span class="uk-margin-small-left"></span>
         </a>
         <div id="modal-full-mobile-menu" class="uk-modal-full uk-modal" uk-modal>
-            <button class="uk-modal-close-full uk-modal-close-full-custom uk-padding-large uk-close-large" type="button" uk-close></button>
-            <div class="uk-modal-dialog uk-modal-dialog-custom-color uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+            <button class="uk-modal-close-full uk-modal-close-full-custom uk-padding-large uk-close-large" type="button"
+                    uk-close></button>
+            <div class="uk-modal-dialog uk-modal-dialog-custom-color uk-flex uk-flex-center uk-flex-middle"
+                 uk-height-viewport>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'main_menu',

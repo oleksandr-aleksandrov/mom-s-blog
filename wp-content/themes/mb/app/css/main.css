@@ -155,6 +155,7 @@ h2, h3, h4, h5, h6 {
 .uk-description-front {
   height: -webkit-calc(100vh - 80px);
   height: calc(100vh - 80px);
+  width: 100%;
 }
 
 /* --== /FRONT-PAGE ==-- */
@@ -359,6 +360,53 @@ article h2 a:hover {
 }
 
 /* --== /ARCHIVES-MENUS ==-- */
+/* --== SINGLE-NEWS ==-- */
+.uk-article-header {
+  padding: 70px 0 20px 0;
+}
+
+.uk-article-header .uk-title-wrapper {
+  border-left: 1px solid #ebebeb;
+  padding-left: 30px;
+}
+
+.uk-share-list {
+  display: none;
+}
+
+.uk-share-list ul {
+  padding: 0 15px;
+  position: fixed;
+  top: 150px;
+  text-align: center;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity linear .3s 0s;
+  -o-transition: opacity linear .3s 0s;
+  transition: opacity linear .3s 0s;
+  list-style: none;
+}
+
+.uk-share-list ul span {
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.uk-share-list ul a {
+  display: inline-block;
+}
+
+.uk-share-list ul a:hover {
+  opacity: .7;
+}
+
+.uk-share-list ul i {
+  color: #989898;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+/* --== /SINGLE-NEWS ==-- */
 /* --== WP WYSIWYG Editor Styles ==-- */
 .entry-content img {
   margin: 0 0 1.5em 0;
@@ -430,5 +478,19 @@ blockquote.right {
 @media screen and (max-width: 959px) {
   .home main {
     background-image: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 27px;
+  }
+  h2, h3, h4, h5, h6 {
+    font-size: 20px;
+  }
+  /* --== SINGLE-NEWS ==-- */
+  .uk-article-header .uk-title-wrapper {
+    padding: 0;
+    border: 0;
   }
 }

@@ -37,38 +37,44 @@ get_header(); ?>
 
     <div class="uk-container uk-margin-medium-bottom">
     <div uk-grid>
-        <div class="uk-width-1-4 uk-visible@m">
-            <?php echo render_template_part('archive-small-menu_part'); ?>
-        </div>
-        <div class="mb-archive-page uk-width-1-1 uk-width-3-4@m">
-            <?php
-            if (have_posts()) : ?>
+    <div class="uk-width-1-4 uk-visible@m">
+        <?php echo render_template_part('archive-small-menu_part'); ?>
+    </div>
+<?php if ((is_tax('news-category'))): ?>
+    <div class="mb-archive-page uk-width-1-1 uk-width-3-4@m">
+    <?php elseif ((is_tax('photo_category'))): ?>
+    <div class="uk-width-1-1 uk-width-3-4@m">
+    <div class="uk-grid-small mb-archive-page" uk-grid>
+<?php endif; ?>
+<?php
+if (have_posts()) : ?>
 
-                <?php
-                /* Start the Loop */
-                while (have_posts()) : the_post();
+    <?php
+    /* Start the Loop */
+    while (have_posts()) : the_post();
 
-                    switch (get_post_type()) {
-                        case 'vi_news':
-                            render_partial('template-parts/news_content', ['post' => get_post()]);
-                            break;
-                        case 'photo':
-                            render_partial('template-parts/1_4_album', ['post' => get_post()]);
-                            break;
+        switch (get_post_type()) {
+            case 'vi_news':
+                render_partial('template-parts/news_content', ['post' => get_post()]);
+                break;
+            case 'photo':
+                render_partial('template-parts/1_4_album', ['post' => get_post()]);
+                break;
 
-                    }
+        }
 
-                endwhile; ?>
+    endwhile; ?>
 
-                <?php
-            else :
+    <?php
+else :
 
-                echo '<p>' . 'Постiв не знайдено' . '</p>';
+    echo '<p>' . 'Постiв не знайдено' . '</p>';
 
-            endif; ?>
-        </div>
-
-
+endif; ?>
+    </div>
+<?php if ((is_tax('photo_category'))): ?>
+    </div>
+<?php endif; ?>
     </div>
 <?php echo render_template_part('spinner_3_4'); ?>
 <?php

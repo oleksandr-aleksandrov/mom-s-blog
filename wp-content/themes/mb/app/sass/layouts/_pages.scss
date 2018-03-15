@@ -1,6 +1,7 @@
 /* --== FRONT-PAGE ==-- */
 .uk-description-front {
   height: calc(100vh - 80px);
+  width: 100%;
 }
 
 /* --== /FRONT-PAGE ==-- */
@@ -190,3 +191,44 @@ article {
 }
 
 /* --== /ARCHIVES-MENUS ==-- */
+
+/* --== SINGLE-NEWS ==-- */
+
+.uk-article-header {
+  padding: 70px 0 20px 0;
+  .uk-title-wrapper {
+    border-left: 1px solid $silver-color;
+    padding-left: 30px;
+  }
+}
+
+.uk-share-list {
+  display: none;
+  ul {
+    padding: 0 15px;
+    position: fixed;
+    top: 150px;
+    text-align: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity linear .3s 0s;
+    list-style: none;
+    span {
+      font-size: 13px;
+      font-family: 'Open Sans', sans-serif;
+    }
+    a {
+      display: inline-block;
+      &:hover {
+        opacity: .7;
+      }
+    }
+    i {
+      color: #989898;
+      font-size: 20px;
+      margin: 5px 0;
+    }
+  }
+}
+
+/* --== /SINGLE-NEWS ==-- */

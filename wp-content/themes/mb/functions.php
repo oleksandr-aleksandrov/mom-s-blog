@@ -165,7 +165,8 @@ function mb_scripts()
 
     wp_enqueue_style('OpenSans', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=cyrillic');
 
-    wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+//    wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
 
     wp_enqueue_style('uikit-css', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css');
 
@@ -178,7 +179,7 @@ function mb_scripts()
     wp_enqueue_script('main-js');
 
     wp_enqueue_script('uikit-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js', true);
-
+    wp_enqueue_script('uikit-icon-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js');
     wp_enqueue_script('html5shiv', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js');
 
     wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
@@ -255,4 +256,14 @@ function facebook_open_graph()
 	";
 }
 
+
 add_action('wp_head', 'facebook_open_graph', 5);
+
+
+# deleting attribute type in scripts and styles
+add_filter('style_loader_tag', 'sj_remove_type_attr', 10, 2);
+add_filter('script_loader_tag', 'sj_remove_type_attr', 10, 2);
+function sj_remove_type_attr($tag)
+{
+    return preg_replace("/type=['\"]text\/(javascript|css)['\"]/", '', $tag);
+}

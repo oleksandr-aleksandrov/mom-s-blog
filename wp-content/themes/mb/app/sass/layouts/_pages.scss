@@ -68,17 +68,7 @@ article {
   }
 
   padding-left: 5px;
-  a {
-    font-size: 15px;
-    text-transform: none !important;
-    color: $main-color-blue !important;
-    border-bottom: 2px solid #e9f7fd;
-    transition-property: border-color;
-    transition-duration: .1s;
-    &:hover {
-      border-color: $main-color-blue;
-    }
-  }
+
 }
 
 .uk-my-article {
@@ -231,4 +221,16 @@ article {
   }
 }
 
+.uk-icon-eye {
+  display: flex !important;
+  i {
+    opacity: .6;
+    margin-left: 5px;
+  }
+}
+
 /* --== /SINGLE-NEWS ==-- */
+
+/* --== SIMILAR-NEWS ==-- */
+
+/* --== /SIMILAR-NEWS ==-- */

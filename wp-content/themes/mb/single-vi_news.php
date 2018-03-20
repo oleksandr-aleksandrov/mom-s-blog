@@ -41,7 +41,7 @@ get_header(); ?>
         </div>
     </div>
 
-
+<?php echo render_template_part('sharelist_item_part'); ?>
 <?php
 global $post;
 $news = get_posts([
@@ -76,32 +76,11 @@ $news = get_posts([
         <?php // If comments are open or we have at least one comment, load up the comment template.
         if (comments_open() || get_comments_number()) :
             comments_template();
-        endif; ?>
+        endif;
+        ?>
     </div>
 
-    <div id="shareList" class="uk-container uk-share-list uk-visible@m">
-        <ul>
-            <li><span>Подiлитися:</span></li>
-            <li>
-                <a onClick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]=http://mb.test/news/news-31/');"
-                   href="javascript: void(0)">
-                    <i uk-icon="icon:  facebook; ratio: 1.2"></i>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i uk-icon="icon: google-plus; ratio: 1.2"></i>
-                </a>
-            </li>
-            <li>
-                <a
-                    href="">
-                    <i uk-icon="icon: twitter; ratio: 1.2"></i>
-                </a>
-            </li>
-        </ul>
 
-    </div>
 <?php
 get_footer();
 ?>

@@ -42,6 +42,10 @@ article {
     border-color: $main-color-blue;
     text-decoration: none;
   }
+  &:focus {
+    outline: none;
+    background-color: lighten($main-color-blue, 45%);
+  }
 }
 
 .infinite-loader {
@@ -230,6 +234,98 @@ article {
 }
 
 /* --== /SINGLE-NEWS ==-- */
+
+/* --== COMMENTS-BLOCK ==-- */
+
+.comment-form {
+  textarea {
+    min-width: 100%;
+    min-height: 250px;
+  }
+
+  textarea:focus,
+  input:focus {
+    border-right: 4px solid $main-color-blue;
+    border-color: $main-color-blue;
+    color: #000;
+  }
+
+}
+
+#comments {
+  .uk-before-notes {
+    color: #a61717;
+  }
+  .says {
+    display: none;
+  }
+  .comment-list {
+    padding: 0;
+    list-style: none;
+    .children {
+      list-style: none;
+      border-left: 1px solid #ddd;
+      padding-left: 15px;
+    }
+    .comment-body {
+      position: relative;
+      font-size: 15px;
+      line-height: 19px;
+      margin-bottom: 20px;
+      padding: 10px 10px 20px 10px;
+      background-color: #fbfbfb;
+      .reply {
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        background-color: $main-color-blue;
+        @extend .uk-round-3px;
+        a {
+          color: #fff;
+          padding: 3px;
+          font-size: 12px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      .comment-meta {
+        b {
+          text-transform: capitalize;
+        }
+      }
+
+      .comment-metadata {
+        padding-left: 55px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        a {
+          font-size: 10px;
+          color: #757575;
+        }
+        .comment-edit-link {
+          color: #a61717;
+        }
+      }
+      .comment-content {
+        font-size: 15px;
+        padding-left: 46px;
+      }
+    }
+  }
+}
+
+//.comments-area {
+//  ul {
+//    list-style: none;
+//    li {
+//      margin: 10px 0 0;
+//      padding: 0;
+//      border-bottom: 1px solid #eee;
+//      margin-bottom: 30px;
+//    }
+//  }
+//}
 
 /* --== SIMILAR-NEWS ==-- */
 

@@ -1,3 +1,30 @@
+@media screen and (max-width: 1200px) {
+  .uk-share-list {
+    margin-bottom: 20px;
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: static;
+      text-align: left;
+      li {
+        &:first-child {
+          padding: 0;
+          border: 0;
+          position: absolute;
+          top: -30px;
+        }
+
+        margin-right: 7px;
+        a {
+          padding: 0 10px;
+          border: 2px solid #09c;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 959px) {
   .home main {
     background-image: none;
@@ -19,5 +46,10 @@
 
   header #header {
     height: 50px;
+  }
+
+  /* --== COMMENTS-BLOCK ==-- */
+  .children {
+    padding-left: 5px;
   }
 }

@@ -53,3 +53,9 @@
     padding-left: 5px;
   }
 }
+
+@media screen and (max-width: 639px) {
+  .comment-form .comment-form-email {
+    padding-left: 30px;
+  }
+}

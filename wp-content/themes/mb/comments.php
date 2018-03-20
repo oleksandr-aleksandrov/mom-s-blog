@@ -78,9 +78,9 @@ if (post_password_required()) {
     $req = get_option('require_name_email');
     $aria_req = ($req ? " aria-required='true'" : '');
     $fields = array(
-        'author' => '<div class="comment-form-author uk-width-1-2">' . '<label for="author">' . __('') . '</label> ' .
+        'author' => '<div class="comment-form-author uk-width-1-1 uk-width-1-2@s">' . '<label for="author">' . __('') . '</label> ' .
             '<input id="author" class="uk-input" placeholder="Iм`я*" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></div>',
-        'email' => '<div class="comment-form-email uk-width-1-2 uk-padding-remove"><label for="email">' . __('') . '</label> ' .
+        'email' => '<div class="comment-form-email uk-width-1-1 uk-width-1-2@s"><label for="email">' . __('') . '</label> ' .
             '<input id="email" class="uk-input" placeholder="Email*" name="email" type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></div>',
     );
     $comments_args = array(

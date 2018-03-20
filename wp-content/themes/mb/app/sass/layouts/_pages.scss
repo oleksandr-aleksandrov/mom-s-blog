@@ -249,7 +249,9 @@ article {
     border-color: $main-color-blue;
     color: #000;
   }
-
+  .comment-form-email {
+    padding: 0;
+  }
 }
 
 #comments {

@@ -482,6 +482,10 @@ article h2 a:hover {
   color: #000;
 }
 
+.comment-form .comment-form-email {
+  padding: 0;
+}
+
 #comments .uk-before-notes {
   color: #a61717;
 }
@@ -680,5 +684,11 @@ blockquote.right {
   /* --== COMMENTS-BLOCK ==-- */
   .children {
     padding-left: 5px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .comment-form .comment-form-email {
+    padding-left: 30px;
   }
 }

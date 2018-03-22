@@ -186,21 +186,6 @@ header #header {
 
 header #header {
   height: 50px;
-  position: fixed;
-  -webkit-transform: translateY(0);
-  -ms-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transition: -webkit-transform 350ms cubic-bezier(0.63, 0.64, 0.3, 1);
-  transition: -webkit-transform 350ms cubic-bezier(0.63, 0.64, 0.3, 1);
-  -o-transition: transform 350ms cubic-bezier(0.63, 0.64, 0.3, 1);
-  transition: transform 350ms cubic-bezier(0.63, 0.64, 0.3, 1);
-  transition: transform 350ms cubic-bezier(0.63, 0.64, 0.3, 1), -webkit-transform 350ms cubic-bezier(0.63, 0.64, 0.3, 1);
-}
-
-header #header.is-up {
-  -webkit-transform: translateY(-70px);
-  -ms-transform: translateY(-70px);
-  transform: translateY(-70px);
 }
 
 header #header .uk-navbar-item, header #header .uk-navbar-nav > li > a, header #header .uk-navbar-toggle {
@@ -677,6 +662,9 @@ blockquote.right {
   .uk-article-header .uk-title-wrapper {
     padding: 0;
     border: 0;
+  }
+  .uk-section {
+    padding-top: 70px;
   }
   header #header {
     height: 50px;

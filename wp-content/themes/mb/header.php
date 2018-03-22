@@ -26,7 +26,7 @@
 
 <body <?php body_class(); ?>>
 
-<header>
+<header uk-sticky>
     <div id="header">
         <nav class="uk-container" uk-navbar>
             <?php $logo = wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'logo'); ?>

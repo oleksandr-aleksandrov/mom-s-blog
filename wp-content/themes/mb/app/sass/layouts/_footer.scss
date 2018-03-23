@@ -1,4 +1,11 @@
 /* --== FOOTER ==-- */
+
+.uk-footer-navigation {
+  background-color: lighten($silver-color, 5%);
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .uk-copyright {
   background-color: $silver-color;
   color: $silver-text-color;

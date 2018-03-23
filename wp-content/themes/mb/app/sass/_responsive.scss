@@ -29,6 +29,23 @@
   .home main {
     background-image: none;
   }
+  .page-template-template-useful-link {
+    .uk-title-background {
+      position: static;
+      background-image: none;
+    }
+    h1 {
+      color: $black-color;
+    }
+    p {
+      color: $black-color;
+    }
+    span:before {
+      content: '';
+      position: static;
+    }
+  }
+
 }
 
 @media screen and (max-width: 767px) {

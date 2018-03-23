@@ -2,7 +2,7 @@
 namespace MB\PostType;
 /**
  *
- * @package VodolahaInfo\PostType
+ * @package MB\PostType
  */
 interface IPostType
 {

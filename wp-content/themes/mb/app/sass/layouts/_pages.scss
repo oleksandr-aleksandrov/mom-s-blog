@@ -22,8 +22,6 @@ article {
   transform: rotate(10deg);
 }
 
-
-
 .uk-button-more {
   color: $main-color-blue;
   border: 2px solid $main-color-blue;
@@ -165,7 +163,7 @@ article {
 
 #sidemenu li.opened > a, #sidemenu li.current-menu-parent > a, #sidemenu > ul > li.current-menu-item > a {
   color: #3D464D;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 24px;
 }
 
@@ -334,3 +332,45 @@ article {
 /* --== SIMILAR-NEWS ==-- */
 
 /* --== /SIMILAR-NEWS ==-- */
+
+/* --== USEFUL-LINK-TEMPLATE ==-- */
+
+.uk-title-background {
+  background-image: url('http://pskovskie.ru/media/W1siZiIsIjIwMTYvMDgvMjgvNXA4aGllamFuMV9wcmlyb2RhX3Bza292c2tveV9vYmxhc3RpXzMuanBnIl1d/priroda_pskovskoy_oblasti_3.jpg?sha=3ea700107155d063');
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  color: $white-color;
+  h1 {
+    color: $white-color;
+  }
+  span {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.page-template-template-useful-link {
+  .uk-logo {
+    position: static !important;
+  }
+  header #header {
+    //background-color: transparent;
+    //background: transparent;
+  }
+  footer {
+    display: none;
+  }
+}
+
+/* --== /USEFUL-LINK-TEMPLATE ==-- */

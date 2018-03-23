@@ -14,8 +14,25 @@
 </main>
 
 <footer>
-    <div class="site-info uk-container">
-
+    <div class="uk-footer-navigation">
+        <div class="uk-container">
+            <div uk-grid>
+                <div class="uk-width-1-2@s">
+                    <nav>
+                        <ul>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                            <li>asdsad</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="uk-copyright">
         <div class="uk-container">

@@ -2,7 +2,7 @@
 namespace MB\PostType;
 /**
  *
- * @package VodolahaInfo\PostType
+ * @package mb\PostType
  */
 class News implements IPostType
 {

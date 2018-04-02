@@ -99,6 +99,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+  background-color: #fff;
 }
 
 main {
@@ -143,7 +144,7 @@ h2, h3, h4, h5, h6 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.current:bafore {
+.current:before {
   content: '';
   position: absolute;
   top: 100%;
@@ -172,16 +173,8 @@ h2, h3, h4, h5, h6 {
   background-position: right top;
 }
 
-header #header {
-  overflow: hidden;
-  background-color: #fff;
-  background: rgba(255, 255, 255, 0.95);
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 0.9));
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(255, 255, 255, 0.95)), to(rgba(255, 255, 255, 0.9)));
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 0.9));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 0.9));
-  width: 100%;
-  z-index: 100;
+.uk-active-header-sticky {
+  background-color: rgba(255, 255, 255, 0.96);
 }
 
 header #header {

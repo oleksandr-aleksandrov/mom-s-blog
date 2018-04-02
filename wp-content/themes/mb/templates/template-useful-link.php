@@ -23,13 +23,18 @@ get_header();
                     <?php if (have_rows('useful_link')): ?>
                         <?php while (have_rows('useful_link')): the_row(); ?>
                             <div class="uk-width-1-4 uk-text-center">
-                                <a target="_blank" href="<?php the_sub_field('useful_link_url'); ?>">
-                                    <figure>
-                                        <img
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Logo_of_Ministry_of_Education_and_Science_of_Ukraine.svg/250px-Logo_of_Ministry_of_Education_and_Science_of_Ukraine.svg.png"
-                                            alt="">
+                                <a target="_blank"
+                                   href="<?php the_sub_field('useful_link_url'); ?>">
+                                    <figure class="uk-position-relative uk-useful-item">
+                                        <?php $useful_link_image = get_sub_field('useful_link_image'); ?>
+                                        <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+                                            <img class="uk-transition-scale-up uk-transition-opaque"
+                                                 src="<?php echo $useful_link_image['sizes']['useful_image']; ?>"
+                                                 alt="<?php echo $useful_link_image['alt']; ?>">
+                                        </div>
                                         <figcaption
                                             class="uk-h6 uk-margin-remove"><?php the_sub_field('useful_link_name'); ?></figcaption>
+
                                     </figure>
                                 </a>
                             </div>

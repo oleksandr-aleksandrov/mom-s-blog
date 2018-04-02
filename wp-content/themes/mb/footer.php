@@ -36,10 +36,13 @@
     </div>
     <div class="uk-copyright">
         <div class="uk-container">
-            <span>
-                <?php _e('Tetiana Aleksandrova © ', 'mb');
-                echo date('Y'); ?>
-            </span>
+            <div class="uk-flex uk-flex-between" uk-grid>
+                <span>
+                    <?php _e('Tetiana Aleksandrova © ', 'mb');
+                    echo date('Y'); ?>
+                </span>
+                <a href="main" uk-totop uk-scroll></a>
+            </div>
         </div>
     </div>
 </footer><!-- #colophon -->

@@ -96,6 +96,7 @@ if (!function_exists('mb_setup')) :
         add_image_size('archive_news_thumbnails', 1100, 500, true);
         add_image_size('archive_photo_thumbnails', 600, 500, true);
         add_image_size('single_photo_thumbnails', 900, 500, true);
+        add_image_size('useful_image', 200, 200);
 //        add_image_size('deputies_thumb', 250, 300, true);
 //        add_image_size('deputies_thumb_single', 400, 450, true);
 //        add_image_size('archive-news', 370, 240, true);

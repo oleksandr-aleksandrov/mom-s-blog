@@ -9,6 +9,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   position: relative;
+  background-color: $white-color;
 }
 
 main {
@@ -56,7 +57,7 @@ h2, h3, h4, h5, h6 {
   color: $black-color !important;
   position: relative;
   background-color: rgba($white-color, 0.8);
-  &:bafore {
+  &:before {
     content: '';
     position: absolute;
     top: 100%;
@@ -83,16 +84,18 @@ h2, h3, h4, h5, h6 {
     background-position: right top;
   }
 }
-
-header #header {
-  overflow: hidden;
-  background-color: #fff;
-  background: rgba(255, 255, 255, .95);
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, .95) 20%, rgba(255, 255, 255, .9));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, .95) 20%, rgba(255, 255, 255, .9));
-  width: 100%;
-  z-index: 100;
+.uk-active-header-sticky {
+  background-color: rgba($white-color,.96);
 }
+//header #header {
+//  overflow: hidden;
+//  //background-color: #fff;
+//  //background: rgba(255, 255, 255, .95);
+//  background: -webkit-linear-gradient(top, rgba(255, 255, 255, .95) 20%, rgba(255, 255, 255, .9));
+//  background: linear-gradient(to bottom, rgba(255, 255, 255, .95) 20%, rgba(255, 255, 255, .9));
+//  width: 100%;
+//  z-index: 100;
+//}
 
 header #header {
   height: 50px;

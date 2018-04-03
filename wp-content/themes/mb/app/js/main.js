@@ -34,34 +34,35 @@
         });
     });
 
-    //
-    // $(function ($) {
-    //     var header = $('#header'),
-    //         lastScrollTop = 0;
-    //     var didScroll = false;
-    //     window.onscroll = doThisStuffOnScroll;
-    //     function doThisStuffOnScroll() {
-    //         didScroll = true;
-    //     }
-    //
-    //     setInterval(function () {
-    //         if (didScroll) {
-    //             didScroll = false;
-    //             var st = $(window).scrollTop();
-    //             if (st > lastScrollTop) {
-    //                 // scrolling on down
-    //                 header.removeClass('is-down').addClass('is-up');
-    //             } else {
-    //                 // scrolling on up
-    //                 if (st + $(window).height() < $(document).height()) {
-    //                     header.removeClass('is-up').addClass('is-down');
-    //                 }
-    //             }
-    //             lastScrollTop = st;
-    //         } else {
-    //             return;
-    //         }
-    //     }, 200);
-    // });
+
+//
+// $(function ($) {
+//     var header = $('#header'),
+//         lastScrollTop = 0;
+//     var didScroll = false;
+//     window.onscroll = doThisStuffOnScroll;
+//     function doThisStuffOnScroll() {
+//         didScroll = true;
+//     }
+//
+//     setInterval(function () {
+//         if (didScroll) {
+//             didScroll = false;
+//             var st = $(window).scrollTop();
+//             if (st > lastScrollTop) {
+//                 // scrolling on down
+//                 header.removeClass('is-down').addClass('is-up');
+//             } else {
+//                 // scrolling on up
+//                 if (st + $(window).height() < $(document).height()) {
+//                     header.removeClass('is-up').addClass('is-down');
+//                 }
+//             }
+//             lastScrollTop = st;
+//         } else {
+//             return;
+//         }
+//     }, 200);
+// });
 })
 (jQuery);

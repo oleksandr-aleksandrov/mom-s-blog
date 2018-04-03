@@ -1,6 +1,8 @@
 @media screen and (max-width: 1200px) {
   .uk-share-list {
-    margin-bottom: 20px;
+    max-width: 900px;
+    margin: auto;
+    padding: 60px 0 20px 0;
     ul {
       display: flex;
       flex-direction: row;
@@ -8,19 +10,44 @@
       position: static;
       text-align: left;
       li {
-        &:first-child {
-          padding: 0;
-          border: 0;
-          position: absolute;
-          top: -30px;
-        }
-
+        //&:first-child {
+        //  padding: 0;
+        //  border: 0;
+        //  position: absolute;
+        //  top: -30px;
+        //}
         margin-right: 7px;
         a {
           padding: 0 10px;
           border: 2px solid #09c;
         }
       }
+    }
+  }
+  // Post navigation on single-news
+  .uk-navigation-single-news {
+    max-width: 900px;
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav-previous, .nav-next {
+      position: static;
+      a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+      }
+    }
+    .nav-next {
+      a {
+        flex-direction: row-reverse;
+      }
+    }
+    .mobile-post-title {
+      display: block;
     }
   }
 }
@@ -76,5 +103,15 @@
 @media screen and (max-width: 639px) {
   .comment-form .comment-form-email {
     padding-left: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .uk-navigation-single-news {
+    .nav-previous, .nav-next {
+      a {
+        padding: 14px 0;
+      }
+    }
   }
 }

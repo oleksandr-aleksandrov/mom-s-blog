@@ -40,7 +40,21 @@ get_header(); ?>
             </div>
         </div>
     </div>
+    <div class="uk-container uk-position-relative uk-navigation-single-news">
+        <?php
+        $post_nav = get_the_post_navigation(array(
+            'screen_reader_text' => ' ',
+            'prev_text' => '<span class="uk-prev-post" uk-icon="chevron-left"></span>' .
+                '<span class="post-title">%title</span>' .
+                '<span class="mobile-post-title">Попередній пост</span>',
+            'next_text' => '<span class="uk-next-post" uk-icon="chevron-right"></span>' .
+                '<span class="post-title">%title</span>'.
+                '<span class="mobile-post-title">Наступний пост</span>',
+        ));
 
+        echo $post_nav;
+        ?>
+    </div>
 <?php echo render_template_part('sharelist_item_part'); ?>
 <?php
 global $post;

@@ -48,7 +48,7 @@ get_header(); ?>
                 '<span class="post-title">%title</span>' .
                 '<span class="mobile-post-title">Попередній пост</span>',
             'next_text' => '<span class="uk-next-post" uk-icon="chevron-right"></span>' .
-                '<span class="post-title">%title</span>'.
+                '<span class="post-title">%title</span>' .
                 '<span class="mobile-post-title">Наступний пост</span>',
         ));
 
@@ -83,7 +83,6 @@ $news = get_posts([
                 ?>
             </ul>
         </div>
-
         <hr>
     </div>
     <div class=" uk-container uk-container-small">

@@ -72,24 +72,24 @@ if (post_password_required()) {
         endif;
 
     endif; ?>
-<!--    Ваш e-mail не будет опубликован. Обязательные поля помечены *-->
+    <!--    Ваш e-mail не будет опубликован. Обязательные поля помечены *-->
     <?php
     $commenter = wp_get_current_commenter();
     $req = get_option('require_name_email');
     $aria_req = ($req ? " aria-required='true'" : '');
     $fields = array(
-        'author' => '<div class="comment-form-author uk-width-1-1 uk-width-1-2@s">' . '<label for="author">' . __('') . '</label> ' .
-            '<input id="author" class="uk-input" placeholder="Iм`я*" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></div>',
-        'email' => '<div class="comment-form-email uk-width-1-1 uk-width-1-2@s"><label for="email">' . __('') . '</label> ' .
-            '<input id="email" class="uk-input" placeholder="Email*" name="email" type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></div>',
+        'author' => '<div class="comment-form-author uk-width-1-1 uk-width-1-2@s uk-position-relative">' . '<label for="author">' . __('') . '</label> ' .
+            '<input id="author" class="uk-input commentName field" placeholder="Iм`я*" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></div>',
+        'email' => '<div class="comment-form-email uk-width-1-1 uk-width-1-2@s uk-position-relative"><label for="email">' . __('') . '</label> ' .
+            '<input id="email" class="uk-input commentMail field" placeholder="Email*" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></div>',
     );
     $comments_args = array(
         'fields' => $fields,
         'label_submit' => 'Залишити коментар',
-        'class_submit' => 'uk-button-more',
+        'class_submit' => 'uk-button-more commentSubmit',
         'submit_field' => '<p class="form-submit uk-margin-medium-top uk-margin-medium-bottom">%1$s %2$s</p>',
         'title_reply' => '',
-        'class_form' => 'comment-form uk-grid',
+        'class_form' => 'commentForm comment-form uk-grid',
         'comment_notes_after' => '',
         'title_reply' => __(''),
         'title_reply_to' => __('Вiдповiсти %s'),
@@ -99,7 +99,7 @@ if (post_password_required()) {
         'cancel_reply_before' => ' <small>',
         'cancel_reply_after' => '</small>',
         'cancel_reply_link' => __('Вiдмiнити вiдповiдь'),
-        'comment_field' => '<div class="comment-form-comment uk-width-1-1"><label for="comment">Залиште своє питання або відгук</label><br /><textarea id="comment" class="uk-textarea uk-margin-small-top" rows="5" placeholder="Текст повiдомлення* ..." name="comment" aria-required="true"></textarea></div>',
+        'comment_field' => '<div class="comment-form-comment uk-width-1-1  uk-position-relative"><label for="comment">Залиште своє питання або відгук</label><br /><textarea id="comment" class="uk-textarea uk-margin-small-top commentMessage field" rows="5" placeholder="Текст повiдомлення* ..." name="comment" aria-required="true"></textarea></div>',
     );
     comment_form($comments_args);
     ?>

@@ -207,7 +207,7 @@ function the_truncated_post($symbol_amount)
     echo substr($filtered, 0, strrpos(substr($filtered, 0, $symbol_amount), ' ')) . '...';
 }
 
-# deleting attribute type in scripts and styles
+// deleting attribute type in scripts and styles
 add_filter('style_loader_tag', 'sj_remove_type_attr', 10, 2);
 add_filter('script_loader_tag', 'sj_remove_type_attr', 10, 2);
 function sj_remove_type_attr($tag)

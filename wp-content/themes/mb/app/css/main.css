@@ -195,6 +195,18 @@ header #header .uk-navbar-item, header #header .uk-navbar-nav > li > a, header #
 .uk-copyright {
   background-color: #ebebeb;
   color: #888;
+  padding: 8px 0;
+}
+
+.uk-copyright a {
+  border: 2px solid #09c;
+  color: #09c;
+  padding: 6px;
+}
+
+.uk-copyright a:hover {
+  background-color: #ccf2ff;
+  color: #09c;
 }
 
 /* --== FRONT-PAGE ==-- */
@@ -543,6 +555,13 @@ article h2 a:hover {
   padding: 0;
 }
 
+.error {
+  position: absolute;
+  right: 1%;
+  top: 13%;
+  font-size: 12px;
+}
+
 #comments .uk-before-notes {
   color: #a61717;
 }
@@ -649,6 +668,93 @@ article h2 a:hover {
 }
 
 /* --== /USEFUL-LINK-TEMPLATE ==-- */
+/* --== 404-PAGE ==-- */
+.error404 {
+  background-image: url("../images/404.jpg");
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.error404 header {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.error404 header .uk-header-menu a {
+  color: #fff;
+}
+
+.error404 header .uk-header-menu a:hover:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+.error404 header .uk-navbar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+.error404 header .uk-navbar-toggle:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.error404 h2 {
+  mix-blend-mode: overlay;
+  color: #fff;
+  font-size: 11rem;
+}
+
+.error404 p {
+  mix-blend-mode: overlay;
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.error404 .uk-footer-navigation {
+  display: none;
+}
+
+.error404 .uk-copyright {
+  background: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.error404 .uk-copyright a {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.error404 .uk-copyright a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+.error404 .uk-copyright a:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.error404 .uk-home-link {
+  mix-blend-mode: overlay;
+  display: inline-block;
+  padding: 15px 50px;
+  border: 2px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.error404 .uk-home-link:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+.error404 .uk-home-link:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* --== /404-PAGE ==-- */
 /* --== WP WYSIWYG Editor Styles ==-- */
 .entry-content img {
   margin: 0 0 1.5em 0;

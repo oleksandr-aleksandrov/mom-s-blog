@@ -315,6 +315,13 @@ article {
   }
 }
 
+.error {
+  position: absolute;
+  right: 1%;
+  top: 13%;
+  font-size: 12px;
+}
+
 #comments {
   .uk-before-notes {
     color: #a61717;
@@ -435,3 +442,89 @@ article {
 }
 
 /* --== /USEFUL-LINK-TEMPLATE ==-- */
+
+/* --== 404-PAGE ==-- */
+
+.error404 {
+  background-image: url('../images/404.jpg');
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+
+  header {
+    background: rgba(0, 0, 0, 0.6);
+    .uk-header-menu {
+      a {
+        color: $white-color;
+        &:hover {
+          &:hover {
+            background-color: rgba($white-color, .5);
+            color: $black-color;
+          }
+        }
+      }
+    }
+    .uk-navbar-toggle {
+      &:hover {
+        background-color: rgba($white-color, .5);
+        color: $black-color;
+      }
+      &:focus {
+        background-color: rgba($white-color, .8);
+      }
+    }
+  }
+  //.uk-active-header-sticky {
+  //  background-color: rgba(255, 255, 255, 0.96) !important;
+  //}
+  h2 {
+    mix-blend-mode: overlay;
+    color: $white-color;
+    font-size: 11rem;
+  }
+  p {
+    mix-blend-mode: overlay;
+    color: $white-color;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .uk-footer-navigation {
+    display: none;
+  }
+  .uk-copyright {
+    background: rgba(0, 0, 0, 0.6);
+    color: rgba($white-color, .6);
+
+    a {
+      border: 2px solid rgba($white-color, .6);
+      color: rgba($white-color, .5);
+
+      &:hover {
+        background-color: rgba($white-color, .5);
+        color: $black-color;
+      }
+      &:focus {
+        background-color: rgba($white-color, .8);
+      }
+    }
+  }
+  .uk-home-link {
+    mix-blend-mode: overlay;
+    display: inline-block;
+    padding: 15px 50px;
+    border: 2px solid $white-color;
+    color: $white-color;
+    font-weight: 600;
+    background-color: rgba($black-color, .3);
+    &:hover {
+      background-color: rgba($white-color, .5);
+      color: $black-color;
+    }
+    &:focus {
+      background-color: rgba($white-color, .8);
+    }
+  }
+}
+
+/* --== /404-PAGE ==-- */

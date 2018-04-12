@@ -9,4 +9,14 @@
 .uk-copyright {
   background-color: $silver-color;
   color: $silver-text-color;
+  padding: 8px 0;
+  a {
+    border: 2px solid $main-color-blue;
+    color: $main-color-blue;
+    padding: 6px;
+    &:hover {
+      background-color: lighten($main-color-blue, 50%);
+      color: $main-color-blue;
+    }
+  }
 }

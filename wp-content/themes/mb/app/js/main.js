@@ -66,3 +66,47 @@
 // });
 })
 (jQuery);
+
+// comments form validation
+
+//
+// var commentForm = document.querySelector('.commentForm');
+// var validateBtn = commentForm.querySelector('.commentSubmit');
+// var commentName = commentForm.querySelector('.commentName');
+// var commentMail = commentForm.querySelector('.commentMail');
+// var commentMessage = commentForm.querySelector('.commentMessage');
+// var fields = commentForm.querySelectorAll('.field');
+//
+//
+// var generateError = function (text) {
+//     var error = document.createElement('div');
+//     error.className = 'error';
+//     error.style.color = 'red';
+//     error.innerHTML = text;
+//     return error;
+// };
+//
+// var removeValidation = function () {
+//     var errors = commentForm.querySelectorAll('.error');
+//     for (var i = 0; i < errors.length; i++) {
+//         errors[i].remove();
+//     }
+// };
+//
+// var checkFieldsPresence = function () {
+//     for (var i = 0; i < fields.length; i++) {
+//         if (!fields[i].value) {
+//             var error = generateError('Поле повинно бути заповнено');
+//             commentForm[i].parentElement.insertBefore(error, fields[i]);
+//         }
+//
+//     }
+// };
+//
+// commentForm.addEventListener('submit', function (event) {
+//     event.preventDefault();
+//
+//     removeValidation();
+//     checkFieldsPresence();
+//
+// });

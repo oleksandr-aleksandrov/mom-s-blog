@@ -22,7 +22,7 @@ get_header();
                 <div class="uk-grid-small uk-grid-divider" uk-grid>
                     <?php if (have_rows('useful_link')): ?>
                         <?php while (have_rows('useful_link')): the_row(); ?>
-                            <div class="uk-width-1-4 uk-text-center">
+                            <div class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m uk-text-center">
                                 <a target="_blank"
                                    href="<?php the_sub_field('useful_link_url'); ?>">
                                     <figure class="uk-position-relative uk-useful-item">

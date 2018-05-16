@@ -176,14 +176,15 @@ function mb_scripts()
     wp_register_style('main-css', get_template_directory_uri() . '/app/css/main.css');
     wp_enqueue_style('main-css');
 
-    wp_enqueue_script('mb-navigation', get_template_directory_uri() . '/app/js/navigation.js', array(), '20151215', true);
+    wp_enqueue_script('mb-navigation', get_template_directory_uri() . '/app/js/navigation.js', array(), null, true);
 
     wp_register_script('main-js', get_template_directory_uri() . '/app/js/main.js', array('jquery'), null, true);
     wp_enqueue_script('main-js');
 
-    wp_enqueue_script('uikit-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js', true);
-    wp_enqueue_script('uikit-icon-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js');
-    wp_enqueue_script('html5shiv', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js');
+    wp_enqueue_script('uikit-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js', array('jquery'), null, true);
+
+    wp_enqueue_script('uikit-icon-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js', array('jquery'), null, true);
+    wp_enqueue_script('html5shiv', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js', null, true);
 
     wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
 

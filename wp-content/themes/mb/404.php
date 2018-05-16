@@ -13,7 +13,6 @@ get_header(); ?>
             404
         </h2>
         <p><?php esc_html_e('Oops! That page can&rsquo;t be found.', 'mb'); ?></p>
-
         <a class="uk-home-link" href="<?php bloginfo('url'); ?>">Home</a>
     </section><!-- .error-404 -->
 <?php

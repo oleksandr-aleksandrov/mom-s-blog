@@ -3,7 +3,7 @@
 function load_more_js()
 {
     global $wp_query;
-    wp_register_script('load-more', get_stylesheet_directory_uri() . '/app/js/load-more.js', array('jquery'));
+    wp_register_script('load-more', get_stylesheet_directory_uri() . '/app/js/load-more.js', array('jquery'), '20151215', true);
 
     wp_localize_script('load-more', 'MAIN', array(
         'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX

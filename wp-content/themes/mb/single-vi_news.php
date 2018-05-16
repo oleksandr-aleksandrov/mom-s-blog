@@ -58,12 +58,35 @@ get_header(); ?>
 <?php echo render_template_part('sharelist_item_part'); ?>
 <?php
 global $post;
-$news = get_posts([
-    'numberposts' => 6,
-    'post_type' => 'vi_news',
-    'orderby' => 'rand',
-    'exclude' => $post->ID
-]);
+//$news = get_posts([
+//    'numberposts' => 6,
+//    'post_type' => 'vi_news',
+//    'orderby' => 'rand',
+//    'exclude' => $post->ID
+//]);
+
+$news_categories = wp_get_post_terms(get_the_ID(), 'news-category');
+
+if ($news_categories) {
+    $news_categories_ids = array();
+    foreach ($news_categories as $news_category) $news_categories_ids = $news_category->term_id;
+
+    $news_posts = get_posts(
+        array(
+            'numberposts' => 6,
+            'taq_query' => array(
+                'taxonomy' => 'news-category',
+                'terms' => $news_categories_ids,
+                'field' => 'term_id'
+            ),
+            'post__not_in' => array(get_the_ID()),
+            'post_type' => 'vi_news',
+            'orderby' => 'rand'
+        )
+    );
+
+};
+
 ?>
     <div class="uk-related-article">
         <hr>
@@ -71,16 +94,18 @@ $news = get_posts([
             <h2 class="uk-width-1-1"><?php _e('Схожi новини', 'mb'); ?></h2>
             <ul>
                 <?php
-                foreach ($news as $post) :
-                    setup_postdata($post);
+                foreach ($news_posts as $post) :
+//                    setup_postdata($post);
                     ?>
                     <li>
-                        <a href="<?php the_permalink(); ?>" class="link-hover"> <?php the_title(); ?></a>
+                        <a href="<?php the_permalink(); ?>" class="link-hover">
+                            <?php the_title(); ?>
+                        </a>
                     </li>
                     <?php
                 endforeach;
-                wp_reset_postdata();
-                ?>
+                //                wp_reset_postdata();
+                //                ?>
             </ul>
         </div>
         <hr>

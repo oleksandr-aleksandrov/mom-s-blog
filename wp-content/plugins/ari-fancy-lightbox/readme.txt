@@ -3,8 +3,8 @@ Contributors: arisoft
 Donate link: http://wp-quiz.ari-soft.com/plugins/wordpress-fancy-lightbox.html
 Tags: lightbox, fancybox3, popup, video lightbox, fancybox
 Requires at least: 3.4
-Tested up to: 4.9.2
-Stable tag: 1.3.1
+Tested up to: 4.9.4
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,14 @@ Sure, it is available [here](http://www.ari-soft.com/docs/wordpress/ari-fancy-li
 
 == Changelog ==
 
+= 1.3.3 =
+
+* Fix bug: "Show info bar" parameter doesn't disable info bar
+
+= 1.3.2 =
+
+* Improvement: open attachment pages into the lightbox for WordPress galleries
+
 = 1.3.1 =
 
 * Better handling external links in IE
@@ -251,6 +259,14 @@ Sure, it is available [here](http://www.ari-soft.com/docs/wordpress/ari-fancy-li
 
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+
+* Fix bug: "Show info bar" parameter doesn't disable info bar
+
+= 1.3.2 =
+
+* Improvement: open attachment pages into the lightbox for WordPress galleries
 
 = 1.3.1 =
 

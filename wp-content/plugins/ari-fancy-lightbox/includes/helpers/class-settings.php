@@ -112,7 +112,7 @@ class Settings extends Settings_Base {
 
             'arrows' => true,
 
-            'infobar' => false,
+            'infobar' => true,
 
             'toolbar' => true,
 

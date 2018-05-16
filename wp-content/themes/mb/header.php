@@ -16,7 +16,8 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="index, follow">
+    <!--    <meta name="robots" content="index, follow">-->
+    <meta name="robots" content="noindex, nofollow"/>
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
     <?php wp_head(); ?>
@@ -26,7 +27,7 @@
 
 <body <?php body_class(); ?>>
 
-<header uk-sticky = "cls-active:uk-active-header-sticky">
+<header uk-sticky="cls-active:uk-active-header-sticky">
     <div id="header">
         <nav class="uk-container" uk-navbar>
             <?php $logo = wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'logo'); ?>

@@ -27,6 +27,7 @@ wp-includes/
 /xmlrpc.php
 wp-content/uploads/*
 wp-content/themes/mb/node_modules
+wp-content/themes/mb-2/node_modules
 .idea/*
 wp-content/db.php
-
+wp-content/mu-plugins/.idea/*

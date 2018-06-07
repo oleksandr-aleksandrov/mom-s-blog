@@ -1,0 +1,66 @@
+/* --== COLORS ==-- */
+
+$black-color: #000;
+$silver-color: #ebebeb;
+$silver-text-color: #888;
+$main-color-blue: #09c;
+$white-color: #fff;
+
+.pt-6, .py-6 {
+    padding-top: 4rem !important;
+}
+
+.pb-6, .py-6 {
+    padding-bottom: 4rem !important;
+}
+
+.pt-7, .py-7 {
+    padding-top: 5rem !important;
+}
+
+.pb-7, .py-7 {
+    padding-bottom: 5rem !important;
+}
+
+.mb-section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.uk-round-3px {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.link-hover {
+    font-size: 15px;
+    text-transform: none !important;
+    color: $main-color-blue !important;
+    border-bottom: 2px solid #e9f7fd;
+    transition-property: border-color;
+    transition-duration: .1s;
+    &:hover {
+        border-color: $main-color-blue;
+        text-decoration: none;
+    }
+}
+
+.uk-text-snow {
+    color: #fff;
+}
+
+@mixin slow-transition {
+    transition: .3s;
+}
+
+@mixin position-cover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.position-cover {
+    @include position-cover;
+}

@@ -8,7 +8,7 @@
  */
 
 get_header(); ?>
-    <section class="error-404 not-found uk-section uk-container uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+    <section class="error-404 not-found us-section uk-container uk-flex uk-flex-column uk-flex-center uk-flex-middle">
         <h2>
             404
         </h2>

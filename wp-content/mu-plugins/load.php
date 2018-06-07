@@ -6,4 +6,4 @@
  * Author:      Oleksandr Aleksandrov <oleksandr.aleksandrov22gmail.com>
  * Author URI:  https://github.com/oleksandr-aleksandrov
  */
-require_once ( 'mb/vendor/autoload.php' );
+require_once 'mb/vendor/autoload.php';

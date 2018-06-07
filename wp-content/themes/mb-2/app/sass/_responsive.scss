@@ -1,0 +1,120 @@
+@media screen and (max-width: 1200px) {
+    .uk-share-list {
+        max-width: 900px;
+        margin: auto;
+        padding: 60px 0 20px 0;
+        ul {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: static;
+            text-align: left;
+            li {
+                //&:first-child {
+                //  padding: 0;
+                //  border: 0;
+                //  position: absolute;
+                //  top: -30px;
+                //}
+                margin-right: 7px;
+                a {
+                    padding: 0 10px;
+                    border: 2px solid #09c;
+                }
+            }
+        }
+    }
+    // Post navigation on single-news
+    .uk-navigation-single-news {
+        max-width: 900px;
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav-previous, .nav-next {
+            position: static;
+            a {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+            }
+        }
+        .nav-next {
+            a {
+                flex-direction: row-reverse;
+            }
+        }
+        .mobile-post-title {
+            display: block;
+        }
+    }
+}
+
+@media screen and (max-width: 959px) {
+    .home main {
+        background-image: none;
+    }
+    .page-template-template-useful-link {
+        .uk-title-background {
+            position: static;
+            background-image: none;
+        }
+        h1 {
+            color: $black-color;
+        }
+        p {
+            color: $black-color;
+        }
+        span:before {
+            content: '';
+            position: static;
+        }
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .home-image {
+        display: none;
+    }
+    h1 {
+        font-size: 27px;
+    }
+    h2, h3, h4, h5, h6 {
+        font-size: 20px;
+    }
+    /* --== SINGLE-NEWS ==-- */
+    .uk-article-header .uk-title-wrapper {
+        padding: 0;
+        border: 0;
+    }
+    .mb-section {
+        padding-top: 70px;
+    }
+    header #header {
+        height: 50px;
+    }
+
+    /* --== COMMENTS-BLOCK ==-- */
+    .children {
+        padding-left: 5px;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .comment-form .comment-form-email {
+        padding-left: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .uk-navigation-single-news {
+        .nav-previous, .nav-next {
+            a {
+                padding: 14px 0;
+            }
+        }
+    }
+}

@@ -15,7 +15,7 @@
 get_header(); ?>
 
 
-    <section class="uk-section">
+    <section class="us-section">
         <div class="uk-container">
             <h1 class="uk-text-center">
                 <?php the_title(); ?>

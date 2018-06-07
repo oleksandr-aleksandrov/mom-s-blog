@@ -18,7 +18,7 @@ get_header();
                 <span></span>
             </div>
             <div class="uk-width-1-3"></div>
-            <div class="uk-width-1-1 uk-width-2-3@m uk-section">
+            <div class="uk-width-1-1 uk-width-2-3@m us-section">
                 <div class="uk-grid-small uk-grid-divider" uk-grid>
                     <?php if (have_rows('useful_link')): ?>
                         <?php while (have_rows('useful_link')): the_row(); ?>

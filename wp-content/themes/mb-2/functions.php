@@ -152,6 +152,15 @@ new \MB\PostType\Templates();
 //////////
 
 
+add_action('wp_enqueue_scripts', 'my_scripts_method');
+function my_scripts_method()
+{
+
+    wp_deregister_script('jquery-core');
+    wp_register_script('jquery-core', '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', null, null, true);
+    wp_enqueue_script('jquery');
+}
+
 /**
  * Enqueue scripts and styles.
  */
@@ -207,3 +216,14 @@ function sj_remove_type_attr($tag)
 }
 
 
+function footer_enqueue_scripts()
+{
+    remove_action('wp_head', 'wp_print_scripts');
+    remove_action('wp_head', 'wp_print_head_scripts', 9);
+    remove_action('wp_head', 'wp_enqueue_scripts', 1);
+    add_action('wp_footer', 'wp_print_scripts', 5);
+    add_action('wp_footer', 'wp_enqueue_scripts', 5);
+    add_action('wp_footer', 'wp_print_head_scripts', 5);
+}
+
+add_action('after_setup_theme', 'footer_enqueue_scripts');

@@ -14,34 +14,35 @@
 </main>
 
 <footer class="main-footer">
-    <div class="uk-footer-navigation">
-        <div class="uk-container">
-            <div uk-grid>
-                <div class="uk-width-1-2@s">
-                    <nav>
-                        <ul>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                            <li>asdsad</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="uk-footer-navigation">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                    <nav>-->
+<!--                        <ul>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                            <li>asdsad</li>-->
+<!--                        </ul>-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="uk-copyright">
-        <div class="uk-container">
-            <div class="uk-flex uk-flex-between" uk-grid>
+        <div class="container">
+            <div class="align-items-center d-flex justify-content-between">
+
                 <span>
                     <?php _e('Tetiana Aleksandrova © ', 'mb');
                     echo date('Y'); ?>
                 </span>
-                <a href="main" uk-totop uk-scroll></a>
+                <a href="main"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>

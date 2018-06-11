@@ -2,6 +2,7 @@ body, html {
     font-family: 'PT Sans', sans-serif;
     font-size: 16px;
     color: $black-color;
+    line-height: 1.5;
 }
 
 body {
@@ -13,9 +14,10 @@ body {
 
 }
 
-main {
+.main {
     flex: 1 0 auto;
     position: relative;
+    font-size: 17px;
 }
 
 h1 {
@@ -95,6 +97,7 @@ h2, h3, h4, h5, h6 {
             transform: translate(-50%, 0);
             width: 23px;
             height: 12px;
+            background: url('../images/tr.png') top no-repeat;
         }
         & > li > a {
             margin: 0;
@@ -108,7 +111,7 @@ h2, h3, h4, h5, h6 {
             }
             &:focus,
             &:hover {
-                background-color: lighten($main-color-blue, 30%);
+                background-color: lighten($main-color-blue, 55%);
                 &::before,
                 &::before {
                     width: 0;
@@ -141,17 +144,14 @@ h2, h3, h4, h5, h6 {
 .current {
     color: $black-color !important;
     position: relative;
-    background-color: rgba($white-color, 0.8);
-    &:before {
+    &:after {
         content: '';
         position: absolute;
-        top: 100%;
-        left: 50%;
-        right: 50%;
-        height: 2px;
-        transition: all .2s ease;
-        background: $main-color-blue;
-        margin-top: -2px;
+        display: block;
+        height: 3px;
+        position: relative;
+        top: 0;
+        background-color: #09c;
     }
 }
 

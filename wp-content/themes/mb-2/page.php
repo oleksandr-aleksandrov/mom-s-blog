@@ -16,15 +16,15 @@ get_header(); ?>
 
 
     <section class="mb-section">
-        <div class="uk-container">
-            <h1 class="uk-text-center">
+        <div class="container">
+            <h1 class="text-center">
                 <?php the_title(); ?>
             </h1>
 
         </div>
     </section>
-    <div class="uk-container uk-container-small">
-        <div uk-grid>
+    <div class="container uk-container-small mb-3">
+        <div class="row">
             <?php
             while (have_posts()) : the_post();
                 the_content();

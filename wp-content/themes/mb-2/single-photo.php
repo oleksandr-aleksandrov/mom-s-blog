@@ -9,9 +9,9 @@
 
 get_header(); ?>
 
-    <div class="uk-container uk-container-small">
-        <div class="uk-margin-medium-bottom" uk-grid>
-            <div class="uk-width-1-1@m">
+    <div class="container uk-container-small">
+        <div class="row mb-4">
+            <div class="col-md-12">
                 <?php
                 while (have_posts()) : the_post(); ?>
                     <article>

@@ -1,22 +1,16 @@
-<div id="shareList" class="uk-container uk-share-list uk-position-relative">
+<div id="shareList" class="container uk-share-list position-relative">
     <ul>
         <li><span>Подiлитися:</span></li>
         <li>
             <a onClick="window.open('https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>;"
                href="javascript: void(0)">
-                <i uk-icon="icon:  facebook; ratio: 1.2"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink(); ?>">
-                <i uk-icon="icon: google-plus; ratio: 1.2"></i>
+                <i class="fa fa-facebook" aria-hidden="true"></i>
             </a>
         </li>
         <li>
             <a href="">
-                <i uk-icon="icon: twitter; ratio: 1.2"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
             </a>
         </li>
     </ul>
-
 </div>

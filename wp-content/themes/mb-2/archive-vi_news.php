@@ -23,7 +23,7 @@ get_header(); ?>
 
     <div class="container mb-4">
     <div class="row">
-        <div class="col-md-3 uk-visible@m">
+        <div class="col-md-3 hidden-sm-down">
             <?php echo render_template_part('archive-small-menu_part'); ?>
         </div>
         <div class="mb-archive-page col-md-9">

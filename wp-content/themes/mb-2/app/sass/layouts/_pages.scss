@@ -16,19 +16,13 @@
 
 /* --== /FRONT-PAGE ==-- */
 /* --== ARCHIVE-PAGE-NEWS ==-- */
-article {
-    h2 {
-        a {
-            color: #263238;
-            font-weight: 500;
-            &:hover {
-                color: inherit;
-            }
-        }
-    }
-}
 
 .uk-custom-subnav-divider > :nth-child(n+2):not(.uk-first-column)::before {
+    content: "";
+    height: 1.5em;
+    margin-left: 0;
+    margin-right: 20px;
+    border-left: 1px solid #e5e5e5;
     transform: rotate(10deg);
 }
 
@@ -67,6 +61,41 @@ article {
     &:first-child {
         margin-top: 0px;
     }
+    h2 {
+        a {
+            color: #263238;
+            font-weight: 500;
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+    & * + p {
+        margin-top: 20px;
+    }
+}
+
+.uk-custom-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    padding: 0;
+    list-style: none;
+    font-size: .875rem;
+    line-height: 1.4;
+    color: #999;
+    & > * {
+        flex: none;
+        padding-left: 20px;
+        position: relative;
+    }
+}
+
+.uk-custom-subnav-divider {
+    & > * {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .uk-custom-subnav > .uk-taxonomy-news-item {
@@ -77,12 +106,7 @@ article {
         margin-right: 0 !important;
         border-left: 0 !important;
     }
-    &:after {
-        content: ',';
-    }
-
     padding-left: 5px;
-
 }
 
 .uk-my-article {
@@ -91,35 +115,75 @@ article {
         height: auto;
         border: 1px solid #ddd;
     }
+    h2 {
+        font-size: 2rem;
+    }
 }
 
 /* --== /ARCHIVE-PAGE-NEWS ==-- */
 
 /* --== ARCHIVE-PAGE-ALBUMS ==-- */
-
-.mb-album {
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
-    &-photo {
-        position: absolute;
-        bottom: 0;
-        padding: 20px;
-        color: #fff;
-        font-weight: 900;
-        &:before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            background: #09c;
-            height: 5px;
-            width: 40px;
+.photo-album-item {
+    min-height: 300px;
+    h2 {
+        padding: 100px 20px;
+        margin: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        z-index: 10;
+    }
+    .photo-album-item_link {
+        transition: .2s;
+        &:hover {
+            background-color: #96cef2;
+            z-index: 0;
+            opacity: .3;
         }
     }
-    &-icon {
-        font-size: 20px;
+    &:nth-child(even) {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+    }
 
+}
+
+//.mb-album {
+//    background-repeat: no-repeat;
+//    -webkit-background-size: cover;
+//    background-size: cover;
+//    background-position: center;
+//    &-photo {
+//        position: absolute;
+//        bottom: 0;
+//        padding: 20px;
+//        color: #fff;
+//        font-weight: 900;
+//        &:before {
+//            content: '';
+//            position: absolute;
+//            top: 10px;
+//            background: #09c;
+//            height: 5px;
+//            width: 40px;
+//        }
+//    }
+//    &-icon {
+//        font-size: 20px;
+//
+//    }
+//}
+.image-link {
+    transition: .3s;
+    &:hover {
+        opacity: .8;
     }
 }
 
@@ -190,7 +254,7 @@ article {
     bottom: 50%;
     width: 3px;
     transition: all .2s ease;
-    background: #09c;
+    background-color: $main-color-blue;
     margin-left: -2px;
 }
 
@@ -456,14 +520,14 @@ article {
 /* --== 404-PAGE ==-- */
 
 .error404 {
-    background-image: url('../images/404.jpg');
+    background-image: url('../images/29.jpg');
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center;
     min-height: 100vh;
 
     header {
-        background: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.6) !important;
         .uk-header-menu {
             a {
                 color: $white-color;

@@ -1,12 +1,15 @@
-<ul class="uk-article-meta uk-subnav uk-custom-subnav uk-subnav-divider uk-custom-subnav-divider uk-archive-meta">
+<ul class="uk-custom-subnav uk-custom-subnav-divider uk-archive-meta">
     <?php $taxonomies = get_the_terms(get_the_ID(), 'news-category');
     if (!empty($taxonomies)) :
         $taxonomies = get_the_terms(get_the_ID(), 'news-category');
+        $sep = ', ';
         foreach ($taxonomies as $taxonomy) :
             ?>
             <li class="uk-taxonomy-news-item">
                 <a class="link-hover" href="<?php echo get_term_link($taxonomy); ?>">
-                    #<?php echo $taxonomy->name; ?>
+                    #<?php echo $taxonomy->name;
+                    echo $sep;
+                    ?>
                 </a>
             </li>
             <?php
@@ -24,9 +27,9 @@
             <?php
             $comments_count = get_comments_number();
             if ($comments_count == 0) {
-                _e('   <i uk-icon="icon: comments; ratio: 0.9"></i> 0', 'mb');
+                _e('<i class="fa fa-comments-o" aria-hidden="true"></i> 0', 'mb');
             } else {
-                printf(_n('%d <i uk-icon="icon: comments; ratio: 0.9"></i>', '%d <i uk-icon="icon: comments; ratio: 0.9"></i>', get_comments_number(), 'mb'), get_comments_number());
+                printf(_n('%d <i class="fa fa-comments-o" aria-hidden="true"></i>', '%d <i class="fa fa-comments-o" aria-hidden="true"></i>', get_comments_number(), 'mb'), get_comments_number());
             }
             ?>
         </a>

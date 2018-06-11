@@ -45,7 +45,9 @@
                     'theme_location' => 'main_menu',
                     'menu_id' => 'primary-menu',
                     'menu_class' => 'header-main-menu d-flex flex-column flex-lg-row justify-content-end navbar-nav ml-auto',
-                    'container' => false
+                    'container' => false,
+                    'depth' => 2,
+                    'walker' => new dropdown_walker_nav_menu(),
                 ));
                 ?>
                 <ul class="nav navbar-nav navbar-right">
@@ -70,4 +72,4 @@
                value="<?php echo esc_attr_x('Search', 'submit button'); ?>"/>
     </form>
 </div>
-<main>
+<main class="main">

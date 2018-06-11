@@ -10,23 +10,23 @@
 get_header(); ?>
 
     <section class="mb-section">
-        <div class="uk-container">
-            <h1 class="uk-text-center">
+        <div class="container">
+            <h1 class="text-center">
                 Welcome to the Albums!
             </h1>
-            <p class="uk-text-center">
+            <p class="text-center">
                 Слоган про Альбоми
             </p>
         </div>
     </section>
 
-    <div class="uk-container uk-margin-medium-bottom">
-    <div uk-grid>
-        <div class="uk-width-1-1 uk-width-1-4@m">
+    <div class="container mb-3">
+    <div class="row">
+        <div class="col-md-3">
             <?php echo render_template_part('archive-small-menu_part'); ?>
         </div>
-        <div class="uk-width-1-1 uk-width-3-4@m">
-            <div class="uk-grid-small mb-archive-page" uk-grid>
+        <div class="col-md-9">
+            <div class="mb-archive-page">
                 <?php
                 if (have_posts()) : ?>
                     <?php
@@ -35,7 +35,7 @@ get_header(); ?>
 
                         {
                             render_partial('template-parts/1_4_album', ['post' => get_post()]);
-                            
+
                         }
                     endwhile; ?>
 

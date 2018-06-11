@@ -6,26 +6,26 @@ Template Name: Кориснi посилання
 get_header();
 ?>
 
-    <div class="uk-container-expand uk-container">
-        <div class="uk-margin-medium-bottom uk-position-relative" uk-grid>
-            <div class="uk-width-1-3@m uk-title-background uk-flex uk-flex-center uk-flex-middle uk-flex-column test">
-                <h1 class="uk-text-center uk-h2 uk-position-z-index">
+    <div class="container-fluid p-0">
+        <div class="mb-4 position-relative">
+            <div class="col-md-3 uk-title-background d-flex flex-column align-items-center
+    justify-content-center">
+                <h1 class="text-center uk-h2 position-z-index">
                     <?php the_title(); ?>
                 </h1>
-                <p class="uk-position-z-index">
+                <p class="text-center position-z-index">
                     <?php _e('Слоган на цю сторiнку', 'mb'); ?>
                 </p>
                 <span></span>
             </div>
-            <div class="uk-width-1-3"></div>
-            <div class="uk-width-1-1 uk-width-2-3@m uk-section">
-                <div class="uk-grid-small uk-grid-divider" uk-grid>
+            <div class="col-md-9 offset-md-3 mb-section">
+                <div class="row p-0">
                     <?php if (have_rows('useful_link')): ?>
                         <?php while (have_rows('useful_link')): the_row(); ?>
-                            <div class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m uk-text-center">
+                            <div class="col-md-3 uk-text-center">
                                 <a target="_blank"
                                    href="<?php the_sub_field('useful_link_url'); ?>">
-                                    <figure class="uk-position-relative uk-useful-item">
+                                    <figure class="position-relative uk-useful-item">
                                         <?php $useful_link_image = get_sub_field('useful_link_image'); ?>
                                         <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
                                             <img class="uk-transition-scale-up uk-transition-opaque"
@@ -33,8 +33,8 @@ get_header();
                                                  alt="<?php echo $useful_link_image['alt']; ?>">
                                         </div>
                                         <figcaption
-                                            class="uk-h6 uk-margin-remove"><?php the_sub_field('useful_link_name'); ?></figcaption>
-
+                                            class="uk-h6 uk-margin-remove"><?php the_sub_field('useful_link_name'); ?>
+                                        </figcaption>
                                     </figure>
                                 </a>
                             </div>

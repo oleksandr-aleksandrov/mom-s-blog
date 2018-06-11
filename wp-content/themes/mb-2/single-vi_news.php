@@ -13,13 +13,12 @@ get_header(); ?>
 <?php
 //require_once("social.php");
 //?>
-    <div class="uk-container uk-container-small">
-        <div class="uk-margin-medium-bottom" uk-grid>
-            <div class="uk-width-1-1@m">
+    <div class="container uk-container-small">
+        <div class="row mb-3">
+            <div class="col-md-12">
                 <?php
                 while (have_posts()) :
                     the_post(); ?>
-
                     <article>
                         <header class="uk-article-header">
                             <div class="uk-title-wrapper">
@@ -27,11 +26,15 @@ get_header(); ?>
                                 <?php echo render_template_part('article_post_meta'); ?>
                             </div>
                         </header>
-
-                        <img src="<?php the_post_thumbnail_url('single_photo_thumbnails'); ?>"
-                             alt="<?php the_post_thumbnail_caption(); ?>">
-                        <?php the_content(); ?>
+                        <picture>
+                            <source srcset="<?php the_post_thumbnail_url('archive_photo_thumbnails'); ?>"
+                                    media="(max-width: 580px)">
+                            <source srcset="<?php the_post_thumbnail_url('single_photo_thumbnails'); ?>">
+                            <img class="img-fluid mb-4" src="<?php the_post_thumbnail_url('single_photo_thumbnails'); ?>"
+                                 alt="<?php the_post_thumbnail_caption(); ?>">
+                            <?php the_content(); ?>
                     </article>
+                    </picture>
                     <?php
 
                 endwhile; // End of the loop.
@@ -40,14 +43,14 @@ get_header(); ?>
             </div>
         </div>
     </div>
-    <div class="uk-container uk-position-relative uk-navigation-single-news">
+    <div class="container position-relative uk-navigation-single-news">
         <?php
         $post_nav = get_the_post_navigation(array(
             'screen_reader_text' => ' ',
-            'prev_text' => '<span class="uk-prev-post" uk-icon="chevron-left"></span>' .
+            'prev_text' => '<span class="uk-prev-post"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>' .
                 '<span class="post-title">%title</span>' .
                 '<span class="mobile-post-title">Попередній пост</span>',
-            'next_text' => '<span class="uk-next-post" uk-icon="chevron-right"></span>' .
+            'next_text' => '<span class="uk-next-post"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>' .
                 '<span class="post-title">%title</span>' .
                 '<span class="mobile-post-title">Наступний пост</span>',
         ));
@@ -90,8 +93,8 @@ if ($news_categories) {
 ?>
     <div class="uk-related-article">
         <hr>
-        <div class="uk-container uk-container-small uk-padding-small">
-            <h2 class="uk-width-1-1"><?php _e('Схожi новини', 'mb'); ?></h2>
+        <div class="container uk-container-small uk-padding-small">
+            <h2 class="col-md-12"><?php _e('Схожi новини', 'mb'); ?></h2>
             <ul>
                 <?php
                 foreach ($news_posts as $post) :
@@ -110,7 +113,7 @@ if ($news_categories) {
         </div>
         <hr>
     </div>
-    <div class=" uk-container uk-container-small">
+    <div class="container uk-container-small">
         <?php // If comments are open or we have at least one comment, load up the comment template.
         if (comments_open() || get_comments_number()) :
             comments_template();

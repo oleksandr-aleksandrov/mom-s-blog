@@ -64,3 +64,20 @@ $white-color: #fff;
 .position-cover {
     @include position-cover;
 }
+
+.uk-icon-image {
+    width: 20px;
+    height: 20px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.uk-container-small {
+    max-width: 900px;
+}
+
+.position-z-index {
+    z-index: 10;
+}

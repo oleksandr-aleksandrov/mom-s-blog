@@ -1,13 +1,11 @@
 (function ($) {
-    $(document).ready(function () {
-        $('.uk-header-menu-current a').each(function () {
-            var location = window.location.href
-            var link = this.href
-            var result = location.match(link);
-            if (result != null) {
-                $(this).addClass('current');
-            }
-        });
+    $('.header-main-menu a').each(function () {
+        var location = window.location.href;
+        var link = this.href;
+        var result = location.match(link);
+        if (result != null) {
+            $(this).addClass('current');
+        }
     });
 
     // archive side-menu
@@ -27,7 +25,6 @@
     });
 
     /// archive side-menu #END
-
     $(document).ready(function (f) {
         var element = f('#shareList');
         f(window).scroll(function () {
@@ -35,18 +32,16 @@
         });
     });
 
-    $(document).ready(function () {
-        $('a[href="#search"]').on('click', function (event) {
-            event.preventDefault();
-            $('#search').addClass('open');
-            $('#search > form > input[type="search"]').focus();
-        });
-
-        $('#search button.close').on('click keyup', function () {
-            $('#search').removeClass('open');
-        });
-
+    $('a[href="#search"]').on('click', function (event) {
+        event.preventDefault();
+        $('#search').addClass('open');
+        $('#search > form > input[type="search"]').focus();
     });
+
+    $('#search button.close').on('click keyup', function () {
+        $('#search').removeClass('open');
+    });
+
 
 })
 (jQuery);

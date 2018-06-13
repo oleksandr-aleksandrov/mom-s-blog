@@ -111,6 +111,19 @@
     }
 }
 
+@media screen and (max-width: 576px) {
+    .photo-album-item {
+        h2 {
+            padding: 20px;
+        }
+    }
+    .photo-album-item__title,
+    .photo-album-item__image {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .uk-navigation-single-news {
         .nav-previous, .nav-next {

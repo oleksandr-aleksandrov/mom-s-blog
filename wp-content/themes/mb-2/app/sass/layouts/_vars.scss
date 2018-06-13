@@ -81,3 +81,10 @@ $white-color: #fff;
 .position-z-index {
     z-index: 10;
 }
+
+.image-link {
+    transition: .3s;
+    &:hover {
+        opacity: .8;
+    }
+}

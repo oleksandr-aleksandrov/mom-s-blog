@@ -133,7 +133,7 @@
         text-align: center;
         z-index: 10;
     }
-    .photo-album-item_link {
+    &_link {
         transition: .2s;
         &:hover {
             background-color: #96cef2;
@@ -152,7 +152,6 @@
         -ms-flex-direction: row-reverse;
         flex-direction: row-reverse;
     }
-
 }
 
 //.mb-album {
@@ -180,12 +179,6 @@
 //
 //    }
 //}
-.image-link {
-    transition: .3s;
-    &:hover {
-        opacity: .8;
-    }
-}
 
 /* --== /ARCHIVE-PAGE-ALBUMS ==-- */
 

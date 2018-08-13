@@ -154,6 +154,10 @@
     }
 }
 
+.photo-album-item__image {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 //.mb-album {
 //    background-repeat: no-repeat;
 //    -webkit-background-size: cover;
@@ -189,22 +193,22 @@
         list-style: none;
         padding: 0;
         li {
-            a {
-                text-decoration: none;
-                -webkit-font-smoothing: antialiased;
-                display: block;
-                color: #777;
-                font-size: 24px;
-                line-height: 30px;
-                font-weight: 300;
-                letter-spacing: 0.15px;
-                transition: 0.2s ease-in-out;
-                -ms-transition: 0.2s ease-in-out;
-                -moz-transition: 0.2s ease-in-out;
-                -webkit-transition: 0.2s ease-in-out;
-                position: relative;
-                padding-bottom: 6px;
-            }
+        }
+        a {
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            display: block;
+            color: #777;
+            font-size: 24px;
+            line-height: 30px;
+            font-weight: 300;
+            letter-spacing: 0.15px;
+            transition: 0.2s ease-in-out;
+            -ms-transition: 0.2s ease-in-out;
+            -moz-transition: 0.2s ease-in-out;
+            -webkit-transition: 0.2s ease-in-out;
+            position: relative;
+            padding-bottom: 6px;
         }
     }
     .sub-menu {
@@ -229,8 +233,8 @@
 }
 
 #sidemenu li.opened > a, #sidemenu li.current-menu-parent > a, #sidemenu > ul > li.current-menu-item > a {
-    color: #3D464D;
-    font-weight: 400;
+    color: #000;
+    font-weight: 300;
     font-size: 24px;
 }
 
@@ -377,9 +381,7 @@
         border-color: $main-color-blue;
         color: #000;
     }
-    .comment-form-email {
-        padding: 0;
-    }
+
 }
 
 .error {
@@ -387,6 +389,18 @@
     right: 1%;
     top: 13%;
     font-size: 12px;
+}
+
+.uk-input, .uk-textarea {
+    max-width: 100%;
+    width: 100%;
+    border: 0 none;
+    padding: 0 10px;
+    background: #fff;
+    color: #666;
+    border: 1px solid #e5e5e5;
+    transition: .2s ease-in-out;
+    transition-property: color, background-color, border;
 }
 
 #comments {

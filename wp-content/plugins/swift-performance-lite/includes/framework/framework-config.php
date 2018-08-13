@@ -776,6 +776,13 @@ class ReduxSA_VendorURL{
                              'default'    => 3,
                              'required'   => array('limit-threads', '=', 1),
                         ),
+                        array(
+                             'id'         => 'dom-parser-max-buffer',
+                             'type'       => 'text',
+                             'title'	=> esc_html__('DOM Parser Max Buffer', 'swift-performance'),
+                             'subtitle'   => esc_html__('Maximum size for DOM parser buffer (bytes).', 'swift-performance'),
+                             'default'    => 1000000,
+                        ),
                   )
             )
       );
@@ -1121,6 +1128,8 @@ class ReduxSA_VendorURL{
                                     '3600'      => '1 hour',
                                     '7200'      => '2 hours',
                                     '21600'     => '6 hours',
+                                    '28800'     => '8 hours',
+                                    '36000'     => '10 hours',
                                     '43200'     => '12 hours',
                                     '86400'     => '1 day',
                                     '172800'    => '2 days'

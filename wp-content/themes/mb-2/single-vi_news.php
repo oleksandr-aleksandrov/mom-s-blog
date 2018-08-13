@@ -30,7 +30,8 @@ get_header(); ?>
                             <source srcset="<?php the_post_thumbnail_url('archive_photo_thumbnails'); ?>"
                                     media="(max-width: 580px)">
                             <source srcset="<?php the_post_thumbnail_url('single_photo_thumbnails'); ?>">
-                            <img class="img-fluid mb-4" src="<?php the_post_thumbnail_url('single_photo_thumbnails'); ?>"
+                            <img class="img-fluid mb-4"
+                                 src="<?php the_post_thumbnail_url('single_photo_thumbnails'); ?>"
                                  alt="<?php the_post_thumbnail_caption(); ?>">
                             <?php the_content(); ?>
                     </article>

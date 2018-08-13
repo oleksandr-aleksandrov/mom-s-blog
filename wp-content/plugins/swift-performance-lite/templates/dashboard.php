@@ -1,6 +1,5 @@
 <?php defined('ABSPATH') or die("KEEP CALM AND CARRY ON");?>
 <?php
-	$cache_status 		= Swift_Performance_Lite::cache_status();
 	$caching_on			= Swift_Performance_Lite::check_option('enable-caching', 1);
 	$assets_caching_on	= (Swift_Performance_Lite::check_option('merge-scripts', 1) || Swift_Performance_Lite::check_option('merge-styles', 1));
 

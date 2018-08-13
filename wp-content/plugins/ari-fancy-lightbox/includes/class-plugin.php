@@ -179,7 +179,10 @@ class Plugin extends Ari_Plugin {
             $lightbox = foogallery_gallery_template_setting( 'lightbox', 'unknown' );
 
             if ( 'arifancylightbox' === $lightbox ) {
-                $attr['data-fancybox-group'] = 'lightbox';
+                global $current_foogallery;
+                
+                $attr['data-fancybox-group'] = $current_foogallery ? 'lightbox_' . $current_foogallery->ID : 'lightbox';
+
                 if ( ! isset( $attr['class'] ) )
                     $attr['class'] = '';
                 else

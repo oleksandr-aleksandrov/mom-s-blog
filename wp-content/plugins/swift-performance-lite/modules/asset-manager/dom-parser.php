@@ -64,7 +64,7 @@ define('SWIFT_DEFAULT_TARGET_CHARSET', 'UTF-8');
 define('SWIFT_DEFAULT_BR_TEXT', "\r\n");
 define('SWIFT_DEFAULT_SPAN_TEXT', " ");
 if (!defined('SWIFT_MAX_FILE_SIZE')){
-	define('SWIFT_MAX_FILE_SIZE', 600000);
+	define('SWIFT_MAX_FILE_SIZE', Swift_Performance_Lite::get_option('dom-parser-max-buffer'));
 }
 // helper functions
 // -----------------------------------------------------------------------------

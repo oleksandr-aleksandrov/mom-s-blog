@@ -129,7 +129,7 @@ class Swift_Performance_Setup {
 					'Upload' => esc_html__('Upload', 'swift-performance'),
 					'Modify' => esc_html__('Modify', 'swift-performance'),
 					'Please wait...' => esc_html__('Please wait...', 'swift-performance'),
-					'Test failed' => esc_html__('Test failed', 'swift-performance')
+					'Test timed out' => esc_html__('Test timed out', 'swift-performance')
 				),
 				'ajax_url'		=> add_query_arg('page', 'swift_performance_setup', admin_url('admin-ajax.php')),
 				'nonce'		=> wp_create_nonce('swift-performance-setup'),
@@ -461,6 +461,10 @@ class Swift_Performance_Setup {
 					if (self::check_loopback()){
 						$response = wp_remote_get(home_url(), array('timeout' => 60, 'sslverify' => false));
 
+						// Extend the max buffer size for large pages
+						$max_buffer_size = max(Swift_Performance_Lite::get_option('dom-parser-max-buffer'), strlen($response['body']));
+						Swift_Performance_Lite::update_option('dom-parser-max-buffer', $max_buffer_size);
+
 						$cf		= wp_remote_retrieve_header( $response, 'cf-cache-status' );
 						$xv		= wp_remote_retrieve_header( $response, 'x-varnish' );
 						$xc		= wp_remote_retrieve_header( $response, 'x-cache' );
@@ -478,7 +482,7 @@ class Swift_Performance_Setup {
 						}
 
 						if (empty($message)){
-							$message = __('No Varnish or reverse proxy was detected', 'swift-performance');
+							$message = __('No Varnish or Cloudflare was detected', 'swift-performance');
 						}
 					}
 					else{
@@ -506,6 +510,9 @@ class Swift_Performance_Setup {
 						else if (strtoupper($matches[2]) == 'K') {
 					        	$memory = $matches[1] * 1024; // nnnK -> nnn KB
 					    	}
+						else{
+							$memory = $matches[1]; // nnnK -> nnn KB
+						}
 					}
 
 					// Probably we are on limited shared hosting

@@ -11,8 +11,8 @@ get_header(); ?>
 
 
     <section class="mb-section">
-        <div class="uk-container uk-container-small">
-            <h1 class="uk-text-center">
+        <div class="container uk-container-small">
+            <h1 class="text-center">
                 <?php $taxonomies = get_the_terms(get_the_ID(), 'news-category');
                 $taxonomies_photo = get_the_terms(get_the_ID(), 'photo_category');
                 if (!empty($taxonomies)) :
@@ -35,16 +35,16 @@ get_header(); ?>
         </div>
     </section>
 
-    <div class="uk-container uk-margin-medium-bottom">
-    <div uk-grid>
-    <div class="uk-width-1-4 uk-visible@m">
+    <div class="container mb-3">
+    <div class="row">
+    <div class="col-md-3">
         <?php echo render_template_part('archive-small-menu_part'); ?>
     </div>
 <?php if ((is_tax('news-category'))): ?>
-    <div class="mb-archive-page uk-width-1-1 uk-width-3-4@m">
+    <div class="mb-archive-page col-12 col-md-9">
     <?php elseif ((is_tax('photo_category'))): ?>
-    <div class="uk-width-1-1 uk-width-3-4@m">
-    <div class="uk-grid-small mb-archive-page" uk-grid>
+    <div class="col-12 col-md-9">
+    <div class="uk-grid-small mb-archive-page">
 <?php endif; ?>
 <?php
 if (have_posts()) : ?>

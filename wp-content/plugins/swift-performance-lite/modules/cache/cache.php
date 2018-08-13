@@ -257,7 +257,7 @@ class Swift_Performance_Cache {
                         }
 
                         // Update warmup table
-                        $id = md5('http' . (is_ssl() ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+                        $id = Swift_Performance_Lite::get_warmup_id($_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
                         $timestamp = time();
                         Swift_Performance_Lite::mysql_query($wpdb->prepare("UPDATE " . SWIFT_PERFORMANCE_TABLE_PREFIX . "warmup SET timestamp = %s, type = %s WHERE id = %s LIMIT 1", $timestamp, $type, $id));
 
@@ -297,7 +297,7 @@ class Swift_Performance_Cache {
                         }
 
                         // Update warmup table
-                        $id = md5('http' . (is_ssl() ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+                        $id = Swift_Performance_Lite::get_warmup_id($_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
                         $timestamp = time();
                         Swift_Performance_Lite::mysql_query($wpdb->prepare("UPDATE " . SWIFT_PERFORMANCE_TABLE_PREFIX . "warmup SET timestamp = %s, type = %s WHERE id = %s LIMIT 1", $timestamp, $type, $id));
 
@@ -744,7 +744,7 @@ class Swift_Performance_Cache {
                         }
 
                         // Update warmup table
-                        $id = md5($bb_permalink);
+                        $id = Swift_Performance_Lite::get_warmup_id($bb_permalink);
                         Swift_Performance_Lite::mysql_query("UPDATE " . SWIFT_PERFORMANCE_TABLE_PREFIX . "warmup SET timestamp = 0, type = '' WHERE id = '{$id}' LIMIT 1");
 
                         // Cloudflare
@@ -993,11 +993,11 @@ class Swift_Performance_Cache {
             }
 
             if (Swift_Performance_Lite::check_option('caching-mode', array('disk_cache_rewrite', 'disk_cache_php'), 'IN')){
-
+                  $base_path = trailingslashit(parse_url($permalink, PHP_URL_PATH));
                   $css_dir = $js_dir = '';
-                  $desktop_cache_path     = parse_url($permalink, PHP_URL_PATH) . 'desktop/';
-                  $mobile_cache_path      = parse_url($permalink, PHP_URL_PATH) . 'mobile/';
-                  $paginate_cache_path    = parse_url($permalink, PHP_URL_PATH) . trailingslashit($wp_rewrite->pagination_base);
+                  $desktop_cache_path     = $base_path . 'desktop/';
+                  $mobile_cache_path      = $base_path . 'mobile/';
+                  $paginate_cache_path    = $base_path . trailingslashit($wp_rewrite->pagination_base);
 
                   if (Swift_Performance_Lite::check_option('separate-css', 1)){
                         $css_dir = apply_filters('swift_performance_css_dir', trailingslashit(trim(parse_url($permalink, PHP_URL_PATH),'/')) . 'css');
@@ -1046,7 +1046,7 @@ class Swift_Performance_Cache {
             }
 
             // Update Warmup Table
-            $id = md5($permalink);
+            $id = Swift_Performance_Lite::get_warmup_id($permalink);
             Swift_Performance_Lite::mysql_query("UPDATE " . SWIFT_PERFORMANCE_TABLE_PREFIX . "warmup SET timestamp = 0, type = '' WHERE id = '{$id}'");
 
             do_action('swift_performance_after_clear_single_cached_item', $permalink, $post_id);
@@ -1376,7 +1376,7 @@ class Swift_Performance_Cache {
             $cache_file = false;
 
             $basedir = trailingslashit(Swift_Performance_Lite::get_option('cache-path')) . SWIFT_PERFORMANCE_CACHE_BASE_DIR;
-            $basedir_regex = trailingslashit(Swift_Performance_Lite::get_option('cache-path')) . SWIFT_PERFORMANCE_CACHE_BASE_DIR . trailingslashit('('.implode('|', apply_filters('swift_performance_enabled_hosts', array(parse_url(Swift_Performance_Lite::home_url(), PHP_URL_HOST)))).')/' . trim(parse_url($permalink, PHP_URL_PATH), '/'));
+            $basedir_regex = trailingslashit(Swift_Performance_Lite::get_option('cache-path')) . SWIFT_PERFORMANCE_CACHE_BASE_DIR . trailingslashit('('.implode('|', apply_filters('swift_performance_enabled_hosts', array(parse_url(Swift_Performance_Lite::home_url(), PHP_URL_HOST)))).')/' . trim(preg_quote(parse_url($permalink, PHP_URL_PATH)), '/'));
 
             if (@file_exists($basedir)){
                   $Directory = new RecursiveDirectoryIterator($basedir);
@@ -1549,11 +1549,11 @@ class Swift_Performance_Cache {
              foreach (apply_filters('swift_performance_enabled_hosts', array(parse_url(Swift_Performance_Lite::home_url(), PHP_URL_HOST))) as $host){
                    $cache_dir = trailingslashit($basedir . $host);
                    if (!file_exists($cache_dir . $dir)){
-             		return false;
+             		continue;
              	}
 
                    if (strpos(realpath($cache_dir . $dir), realpath($cache_dir)) === false){
-                         return;
+                         continue;
                    }
 
              	$files = array_diff(scandir($cache_dir . $dir), array('.','..'));
@@ -1563,7 +1563,7 @@ class Swift_Performance_Cache {
                          }
              	}
 
-             	return @rmdir($cache_dir . $dir);
+             	@rmdir($cache_dir . $dir);
              }
        }
 
@@ -1665,7 +1665,7 @@ class Swift_Performance_Cache {
                                           Swift_Performance_Lite::log('Cloudflare zone ' . $zone->id . ' all files were purged.', 9);
                                     }
                                     else {
-                                          Swift_Performance_Lite::log('Cloudflare zone ' . $zone->id . ' were purged. Files: ' . implode(', ', $files), 9);
+                                          Swift_Performance_Lite::log('Cloudflare zone ' . $zone->id . ' were purged. Files: ' . implode(', ', (array)$files), 9);
                                     }
                               }
                               else {

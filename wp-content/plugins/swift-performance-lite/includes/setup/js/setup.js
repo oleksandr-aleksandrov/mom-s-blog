@@ -92,8 +92,8 @@
 							}
 							analyze();
 						}).fail(function(){
-							jQuery(step).find('.dashicons').removeClass('dashicons-update').removeClass('swift-performance-rotate').addClass('dashicons-no');
-							jQuery(step).find('.result').text(__('Test failed'));
+							jQuery(step).find('.dashicons').removeClass('dashicons-update').removeClass('swift-performance-rotate').addClass('dashicons-clock');
+							jQuery(step).find('.result').text(__('Test timed out'));
 							jQuery(step).addClass('done');
 							analyze();
 						});

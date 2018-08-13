@@ -3,7 +3,7 @@
  * Plugin Name: Swift Performance Lite
  * Plugin URI: https://swiftperformance.io
  * Description: Boost your WordPress site
- * Version: 1.8.2
+ * Version: 1.8.5
  * Author: SWTE
  * Author URI: https://swteplugins.com
  * Text Domain: swift-performance
@@ -62,7 +62,7 @@ class Swift_Performance_Lite {
 		}
 
 		if (!defined('SWIFT_PERFORMANCE_VER')){
-			define('SWIFT_PERFORMANCE_VER', '1.8.2');
+			define('SWIFT_PERFORMANCE_VER', '1.8.5');
 		}
 
 		if (!defined('SWIFT_PERFORMANCE_DB_VER')){
@@ -78,7 +78,7 @@ class Swift_Performance_Lite {
 			// fallback for symlinks
 			if (!file_exists(trailingslashit(WP_PLUGIN_DIR) . $plugin_basename)){
 				foreach (get_option('active_plugins') as $plugin_file){
-					if (md5_file(trailingslashit(WP_PLUGIN_DIR) . $plugin_file) == md5_file(__FILE__)){
+					if (file_exists(trailingslashit(WP_PLUGIN_DIR) . $plugin_file) && md5_file(trailingslashit(WP_PLUGIN_DIR) . $plugin_file) == md5_file(__FILE__)){
 						$plugin_basename = $plugin_file;
 					}
 				}
@@ -289,7 +289,7 @@ class Swift_Performance_Lite {
 			if (is_404()){
 				global $wpdb;
 				$table_name = SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup';
-				$id 		= md5(trailingslashit((is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
+				$id 		= Swift_Performance_Lite::get_warmup_id($_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 				$wpdb->delete($table_name, array('id' => $id));
 				Swift_Performance_Lite::log('404 Error: ' . $_SERVER['REQUEST_URI'], 6);
 			}
@@ -469,7 +469,11 @@ class Swift_Performance_Lite {
  		}
 
  		// Extend timeout
- 		ignore_user_abort(true);
+		ignore_user_abort(true);
+		if (function_exists('fastcgi_finish_request')){
+			fastcgi_finish_request();
+		}
+
  		$timeout = Swift_Performance_Lite::set_time_limit(300, 'build_warmup_table');
  		$urls = array();
 
@@ -477,7 +481,7 @@ class Swift_Performance_Lite {
 
 		// Home
 		if (Swift_Performance_Cache::is_object_cacheable(home_url())){
-			$urls[trailingslashit(home_url())] = trailingslashit(home_url());
+			$urls[Swift_Performance_Lite::get_warmup_id(home_url())] = trailingslashit(home_url());
 		}
 
  		// Post types
@@ -488,8 +492,8 @@ class Swift_Performance_Lite {
  			if ($archive !== false){
  				$url = get_post_type_archive_link( $post_type );
  				if (Swift_Performance_Cache::is_object_cacheable($url)){
-					if (!isset($urls[trailingslashit($url)])){
- 						$urls[trailingslashit($url)] = $url;
+					if (!isset($urls[Swift_Performance_Lite::get_warmup_id($url)])){
+ 						$urls[Swift_Performance_Lite::get_warmup_id($url)] = $url;
 					}
  				}
  			}
@@ -511,8 +515,8 @@ class Swift_Performance_Lite {
  					wp_cache_flush();
  					$permalink = get_permalink($post_id);
  					if (Swift_Performance_Cache::is_object_cacheable($permalink, $post_id)){
-						if (!isset($urls[trailingslashit($permalink)])){
- 							$urls[trailingslashit($permalink)] = $permalink;
+						if (!isset($urls[Swift_Performance_Lite::get_warmup_id($permalink)])){
+ 							$urls[Swift_Performance_Lite::get_warmup_id($permalink)] = $permalink;
 						}
  						// Is it menu_item
  						if (in_array($post_id, $menu_item_ids)){
@@ -527,8 +531,8 @@ class Swift_Performance_Lite {
  				wp_cache_flush();
  				$permalink = get_permalink($post_id);
  				if (Swift_Performance_Cache::is_object_cacheable($permalink, $post_id)){
-					if (!isset($urls[trailingslashit($permalink)])){
- 						$urls[trailingslashit($permalink)] = $permalink;
+					if (!isset($urls[Swift_Performance_Lite::get_warmup_id($permalink)])){
+ 						$urls[Swift_Performance_Lite::get_warmup_id($permalink)] = $permalink;
 					}
  					// Is it menu_item
  					if (in_array($post_id, $menu_item_ids)){
@@ -549,7 +553,7 @@ class Swift_Performance_Lite {
 
  		foreach ($urls as $key => $url){
  			// Build blocks
- 			$_values = '("'.esc_sql(md5($key)).'", "' . esc_sql($url) . '", ' . (int)$priority .', "'.(int)in_array($url, $menu_items).'"),';
+ 			$_values = '("'.esc_sql($key).'", "' . esc_sql($url) . '", ' . (int)$priority .', "'.(int)in_array($url, $menu_items).'"),';
 
  			if (!isset($values[$index])){
  				$values[$index] = '';
@@ -648,6 +652,8 @@ class Swift_Performance_Lite {
 	 * @param string $permalink page to hit
 	 */
 	public static function prebuild_cache_hit($permalink){
+		global $wpdb;
+
 		if (!Swift_Performance_Cache::is_object_cacheable($permalink)){
 			return;
 		}
@@ -662,14 +668,11 @@ class Swift_Performance_Lite {
 
 		$cache_path = trailingslashit(SWIFT_PERFORMANCE_CACHE_DIR) . parse_url($permalink, PHP_URL_PATH) . trailingslashit('desktop/unauthenticated/') . 'index.html';
 
-		Swift_Performance_Lite::log('Check cached file is exsists: ' . $cache_path, 9);
-		if (Swift_Performance_Cache::is_cached($permalink)){
-			return;
-		}
-
 		set_transient('swift_performance_prebuild_cache_hit', $permalink, 120);
 		Swift_Performance_Lite::log('Prebuild cache hit page: ' . $permalink, 9);
-		$response = wp_remote_get($permalink, array('headers' => array('X-merge-assets' => 'true', 'X-Prebuild' => 'true'), 'useragent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0) Gecko/20100101 Firefox/52.0', 'timeout' => 120));
+
+		$response = wp_remote_get($permalink, array('headers' => array('X-merge-assets' => 'true', 'X-Prebuild' => 'true'), 'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0) Gecko/20100101 Firefox/52.0', 'timeout' => 120));
+		$response_object = $response['http_response']->get_response_object();
 
 		// Skip on error
 		if (is_wp_error($response)){
@@ -685,9 +688,13 @@ class Swift_Performance_Lite {
 			Swift_Performance_Lite::stop_prebuild();
 			return;
 		}
+		else if (isset($response_object->redirects) && !empty($response_object->redirects)){
+			$id = Swift_Performance_Lite::get_warmup_id($permalink);
+			Swift_Performance_Lite::mysql_query($wpdb->prepare("UPDATE " . SWIFT_PERFORMANCE_TABLE_PREFIX . "warmup SET type = 'redirect' WHERE id = %s LIMIT 1", $id));
+		}
 
 		if (Swift_Performance_Lite::check_option('mobile-support', 1)){
-			$response = wp_remote_get($permalink, array('headers' => array('X-merge-assets' => 'true', 'X-Prebuild' => 'true'), 'useragent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25', 'timeout' => 120));
+			$response = wp_remote_get($permalink, array('headers' => array('X-merge-assets' => 'true', 'X-Prebuild' => 'true'), 'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25', 'timeout' => 120));
 
 			// Skip on error
 			if (is_wp_error($response)){
@@ -799,6 +806,10 @@ class Swift_Performance_Lite {
 		global $wpdb;
 		$rules = array();
 
+		// Clear all cache
+		Swift_Performance_Cache::clear_all_cache();
+
+		// Clear scheduled hooks
 		wp_clear_scheduled_hook('swift_performance_clear_cache');
 		wp_clear_scheduled_hook('swift_performance_clear_expired');
 		wp_clear_scheduled_hook('swift_performance_clear_assets_proxy_cache');
@@ -885,6 +896,11 @@ class Swift_Performance_Lite {
 	public static function activate(){
 		// Prepare the setup wizard
 		set_transient('swift-performance-setup', 'uid:'.get_current_user_id(), 300);
+
+		// Backup htaccess
+		if (self::server_software() == 'apache' && file_exists(ABSPATH . '.htaccess')){
+			copy(ABSPATH . '.htaccess', (ABSPATH . '.htaccess_backup_' . time()));
+		}
 
 		// Schedule clear cache if cache mode is timebased
 		if (self::check_option('enable-caching', 1) && self::check_option('cache-expiry-mode', 'timebased')){
@@ -1646,7 +1662,7 @@ class Swift_Performance_Lite {
 	 */
 	public static function get_post_types($exclude = array()){
 		global $wpdb;
-		$exclude = array_merge((array)$exclude, array('revision', 'nav_menu_item'));
+		$exclude = array_merge((array)$exclude, array('revision', 'nav_menu_item', 'shop_order', 'shop_coupon'));
 		$post_types = $wpdb->get_col("SELECT DISTINCT post_type FROM {$wpdb->posts} WHERE post_status = 'publish'");
 		return array_diff($post_types, $exclude);
 	}
@@ -1765,66 +1781,80 @@ class Swift_Performance_Lite {
 	 * Return actual cache sizes and cached files
 	 * @return array
 	 */
-	public static function cache_status(){
-		$files = array();
-		$cache_size = Swift_Performance_Lite::cache_dir_size(SWIFT_PERFORMANCE_CACHE_DIR);
-		if (Swift_Performance_Lite::check_option('caching-mode', array('disk_cache_rewrite', 'disk_cache_php'), 'IN') && file_exists(SWIFT_PERFORMANCE_CACHE_DIR)){
-			$Directory = new RecursiveDirectoryIterator(SWIFT_PERFORMANCE_CACHE_DIR);
-			$Iterator = new RecursiveIteratorIterator($Directory);
-			$Regex = new RegexIterator($Iterator, '/((index|404)\.html|index\.xml|index\.json)$/i', RecursiveRegexIterator::GET_MATCH);
-			foreach($Regex as $filename=>$file){
-				if (filesize($filename) > 0){
-					$url			= trailingslashit(parse_url(Swift_Performance_Lite::home_url(), PHP_URL_SCHEME) . '://' . trim(preg_replace('~(desktop|mobile)/(authenticated|unauthenticated)(/[abcdef0-9]*)?/((index|404)\.(html|xml|json))~','',str_replace(SWIFT_PERFORMANCE_CACHE_DIR, trailingslashit(basename(SWIFT_PERFORMANCE_CACHE_DIR)), $filename)),'/'));
-					$files[$url] 	= $url;
-					if (file_exists($filename . '.gz')){
-						$cache_size		+= filesize($filename.'.gz');
-					}
-				}
-			}
-		}
-		else if (Swift_Performance_Lite::check_option('caching-mode', 'memcached_php')){
-			$memcached = Swift_Performance_Cache::get_memcache_instance();
-			$keys = $memcached->getAllKeys();
-			foreach($keys as $item) {
-				if(preg_match('~^swift-performance~', $item)) {
-					$raw_url = preg_replace('~^swift-performance_~', '', $item);
-					$url = trailingslashit(Swift_Performance_Lite::home_url() . trim(preg_replace('~(desktop|mobile)/(authenticated|unauthenticated)(/[abcdef0-9]*)?/((index|404)\.(html|xml|json))~','',str_replace(SWIFT_PERFORMANCE_CACHE_DIR, trailingslashit(basename(SWIFT_PERFORMANCE_CACHE_DIR)), $raw_url)),'/'));
-					if (!preg_match('~\.gz$~', $item)){
-					  	$files[$url] = $url;
-				  	}
-					$cached = Swift_Performance_Cache::memcached_get($raw_url);
-					$cache_size  += strlen($cached['content']);
-			    	}
-			}
-		}
+	 public static function cache_status(){
+ 	     $basedir = trailingslashit(Swift_Performance_Lite::get_option('cache-path')) . SWIFT_PERFORMANCE_CACHE_BASE_DIR;
 
-		global $wpdb;
+ 	     $files = array();
+ 	     $cache_size = Swift_Performance_Lite::cache_dir_size($basedir);
 
-		// All known links
-		$table_name = SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup';
-		$all		= $wpdb->get_var("SELECT COUNT(DISTINCT TRIM(TRAILING '/' FROM url)) url FROM {$table_name}");
+ 	     if (Swift_Performance_Lite::check_option('caching-mode', array('disk_cache_rewrite', 'disk_cache_php'), 'IN')){
+ 		     foreach (apply_filters('swift_performance_enabled_hosts', array(parse_url(Swift_Performance_Lite::home_url(), PHP_URL_HOST))) as $host){
+ 			     $cache_dir = $basedir . $host;
+ 			     if (file_exists($cache_dir)){
+ 				     $Directory = new RecursiveDirectoryIterator($cache_dir);
+ 				     $Iterator = new RecursiveIteratorIterator($Directory);
+ 				     $Regex = new RegexIterator($Iterator, '/((index|404)\.html|index\.xml|index\.json)$/i', RecursiveRegexIterator::GET_MATCH);
+ 				     foreach($Regex as $filename=>$file){
+ 					     if (filesize($filename) > 0){
+ 						     $url			= parse_url(Swift_Performance_Lite::home_url(), PHP_URL_SCHEME) . '://' . preg_replace('~(desktop|mobile)/(authenticated|unauthenticated)(/[abcdef0-9]*)?/((index|404)\.(html|xml|json))~','',trim(str_replace($cache_dir, basename($cache_dir), $filename),'/'));
+ 						     $files[$url] 	= $url;
+ 						     if (file_exists($filename . '.gz')){
+ 							     $cache_size		+= filesize($filename.'.gz');
+ 						     }
+ 					     }
+ 				     }
+ 			     }
+ 		     }
+ 	     }
+ 	     else if (Swift_Performance_Lite::check_option('caching-mode', 'memcached_php')){
+ 		     $memcached = Swift_Performance_Cache::get_memcache_instance();
+ 		     $keys = $memcached->getAllKeys();
+ 		     foreach($keys as $item) {
+ 			     if(preg_match('~^swift-performance~', $item)) {
+ 				     $raw_url = preg_replace('~^swift-performance_~', '', $item);
+ 				     $url = trailingslashit(Swift_Performance_Lite::home_url() . trim(preg_replace('~(desktop|mobile)/(authenticated|unauthenticated)(/[abcdef0-9]*)?/((index|404)\.(html|xml|json))~i','',str_replace(SWIFT_PERFORMANCE_CACHE_DIR, trailingslashit(basename(SWIFT_PERFORMANCE_CACHE_DIR)), $raw_url)),'/'));
+ 				     if (!preg_match('~\.gz$~', $item)){
+ 					     $files[$url] = $url;
+ 				     }
+ 				     $cached = Swift_Performance_Cache::memcached_get($raw_url);
+ 				     $cache_size  += strlen($cached['content']);
+ 			     }
+ 		     }
+ 	     }
 
-		// Count cached AJAX objects
-		$ajax_objects	= $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE '%_transient_timeout_swift_performance_ajax_%'");
-		$ajax_size		= $wpdb->get_var("SELECT SUM(LENGTH(option_value)) as size FROM {$wpdb->options} WHERE option_name LIKE '%_transient_swift_performance_ajax_%'");
+ 	     global $wpdb;
 
-		// Count cached dynamic pages
-		$dynamic_pages	= $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE '%_transient_timeout_swift_performance_dynamic_%'");
-		$dynamic_size	= $wpdb->get_var("SELECT SUM(LENGTH(option_value)) as size FROM {$wpdb->options} WHERE option_name LIKE '%_transient_swift_performance_dynamic_%'");
+ 	     // All known links
+ 	     $table_name = SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup';
+ 	     $all		= $wpdb->get_var("SELECT COUNT(DISTINCT TRIM(TRAILING '/' FROM url)) url FROM {$table_name}");
+ 	     $not_cached = $wpdb->get_var("SELECT COUNT(DISTINCT TRIM(TRAILING '/' FROM url)) url FROM {$table_name} WHERE type = ''");
+ 	     $cached_404 = $wpdb->get_var("SELECT COUNT(DISTINCT TRIM(TRAILING '/' FROM url)) url FROM {$table_name} WHERE type = '404'");
+ 	     $error	= $wpdb->get_var("SELECT COUNT(DISTINCT TRIM(TRAILING '/' FROM url)) url FROM {$table_name} WHERE type = 'error'");
+
+ 	     // Count cached AJAX objects
+ 	     $ajax_objects	= $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE '%_transient_timeout_swift_performance_ajax_%'");
+ 	     $ajax_size		= $wpdb->get_var("SELECT SUM(LENGTH(option_value)) as size FROM {$wpdb->options} WHERE option_name LIKE '%_transient_swift_performance_ajax_%'");
+
+ 	     // Count cached dynamic pages
+ 	     $dynamic_pages	= $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE '%_transient_timeout_swift_performance_dynamic_%'");
+ 	     $dynamic_size	= $wpdb->get_var("SELECT SUM(LENGTH(option_value)) as size FROM {$wpdb->options} WHERE option_name LIKE '%_transient_swift_performance_dynamic_%'");
 
 
 
-		return array(
-			'all'	=> (int)$all,
-			'cached' => count($files),
-			'ajax_objects' => $ajax_objects,
-			'ajax_size' => (int)$ajax_size,
-			'dynamic_pages' => $dynamic_pages,
-			'dynamic_size' => (int)$dynamic_size,
-			'cache_size' => $cache_size,
-			'files' => $files
-		);
-	}
+ 	     return array(
+ 		     'all'	=> (int)$all,
+ 		     'cached' => count($files),
+ 		     'not-cached' => $not_cached,
+ 		     'cached-404' => $cached_404,
+ 		     'error' => $error,
+ 		     'ajax_objects' => $ajax_objects,
+ 		     'ajax_size' => (int)$ajax_size,
+ 		     'dynamic_pages' => $dynamic_pages,
+ 		     'dynamic_size' => (int)$dynamic_size,
+ 		     'cache_size' => $cache_size,
+ 		     'files' => $files
+ 	     );
+      }
 
 	/**
 	 * Count folder size recursively
@@ -2032,6 +2062,14 @@ class Swift_Performance_Lite {
 		return hash('crc32', $url_path) . '_' . hash('crc32', serialize($_GET)) .'_'. hash('crc32', serialize($_POST));
 	}
 
+	/**
+	 * Sanitize given URL and return id for warmup table
+	 * @param string $url
+	 * @return string
+	 */
+	public static function get_warmup_id($url){
+		return md5(trailingslashit(preg_replace('~(https?://)?(www\.)?~','', $url)));
+	}
 
 	/**
 	 * Dashboard Widget
@@ -2060,6 +2098,9 @@ if (!isset($GLOBALS['swift_performance']) || empty($GLOBALS['swift_performance']
 // Deactivate itself if Pro detected
 add_action('init', function(){
 	if (class_exists('Swift_Performance')){
+		if (!function_exists('deactivate_plugins')){
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
 		deactivate_plugins(plugin_basename(__FILE__), true);
 	}
 });

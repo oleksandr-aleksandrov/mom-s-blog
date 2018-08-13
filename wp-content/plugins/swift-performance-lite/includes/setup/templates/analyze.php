@@ -5,7 +5,7 @@
       <li data-step="cpu"><span class="dashicons dashicons-minus"></span> CPU Benchmark <span class="result"></span></li>
       <li data-step="webserver"><span class="dashicons dashicons-minus"></span> Webserver & Rewrites <span class="result"></span></li>
       <li data-step="loopback"><span class="dashicons dashicons-minus"></span> Loopback <span class="result"></span></li>
-      <li data-step="varnish-proxy"><span class="dashicons dashicons-minus"></span> Detect Varnish & reverse proxy <span class="result"></span></li>
+      <li data-step="varnish-proxy"><span class="dashicons dashicons-minus"></span> Detect Varnish & Cloudflare <span class="result"></span></li>
       <li data-step="php-settings"><span class="dashicons dashicons-minus"></span> PHP settings <span class="result"></span></li>
       <li data-step="plugins"><span class="dashicons dashicons-minus"></span> Detect 3rd party plugins <span class="result"></span></li>
       <li data-step="configure-cache"><span class="dashicons dashicons-minus"></span> Configure cache<span class="result"></span></li>

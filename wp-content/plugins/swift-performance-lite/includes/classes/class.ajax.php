@@ -212,7 +212,7 @@ class Swift_Performance_Ajax {
 		}
 
 		$table_name = SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup';
-		$wpdb->query($wpdb->prepare("INSERT IGNORE INTO {$table_name} (id, url, priority, menu_item) VALUES (%s, %s, %d, 0)", md5($url), $url, $priority ));
+		$wpdb->query($wpdb->prepare("INSERT IGNORE INTO {$table_name} (id, url, priority, menu_item) VALUES (%s, %s, %d, 0)", Swift_Performance_Lite::get_warmup_id($url), $url, $priority ));
 
             Swift_Performance_Lite::log('Add warmup URL: ' . esc_html($url), 9);
 
@@ -234,7 +234,10 @@ class Swift_Performance_Ajax {
             // Drop and re-create warmup table
             $wpdb->query('DROP TABLE IF EXISTS ' . SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup');
             delete_option(SWIFT_PERFORMANCE_TABLE_PREFIX . 'db_version');
+            delete_transient('swift_performance_initial_prebuild_links');
             Swift_Performance_Lite::db_install();
+            Swift_Performance_Cache::clear_all_cache();
+            Swift_Performance_Lite::get_prebuild_urls();
 
             Swift_Performance_Lite::log('Reset warmup table', 9);
 
@@ -319,7 +322,7 @@ class Swift_Performance_Ajax {
 	}
 
 	/**
-	 * Show the cache status
+	 * Show the active threads
 	 */
 	public function ajax_change_thread_limit(){
 		// Check user and nonce
@@ -443,7 +446,7 @@ class Swift_Performance_Ajax {
 
             ob_start();
             //1x1 Transparent Gif
-            echo "\x47\x49\x46\x38\x37\x61\x1\x0\x1\x0\x80\x0\x0\xfc\x6a\x6c\x0\x0\x0\x2c\x0\x0\x0\x0\x1\x0\x1\x0\x0\x2\x2\x44\x1\x0\x3b";
+            echo base64_decode('R0lGODlhAQABAJAAAP8AAAAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==');
             //Send full content and keep executeing
             header('Connection: close');
             header('Content-Length: '.ob_get_length());

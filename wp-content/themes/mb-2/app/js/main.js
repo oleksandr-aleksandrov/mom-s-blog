@@ -28,7 +28,7 @@
     $(document).ready(function (f) {
         var element = f('#shareList');
         f(window).scroll(function () {
-            element['fade' + (f(this).scrollTop() > 200 ? 'In' : 'Out')](500);
+            element['fade' + (f(this).scrollTop() > 300 ? 'In' : 'Out')](500);
         });
     });
 
@@ -40,6 +40,11 @@
 
     $('#search button.close').on('click keyup', function () {
         $('#search').removeClass('open');
+    });
+
+    $('#up').click(function () {
+        $('html, body').animate({scrollTop: 0}, 500);
+        return false;
     });
 
 

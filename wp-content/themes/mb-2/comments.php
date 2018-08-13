@@ -41,7 +41,7 @@ if (post_password_required()) {
                     <?php _e('Коментарi', 'mb'); ?>
                 </span>
                 <?php
-                echo '<i class="uk-margin-small-left uk-margin-small-right" uk-icon="icon: comments; ratio: 1.5"></i>';
+                echo '<i class="mx-2 fa fa-comments-o" aria-hidden="true"></i>';
                 echo $comment_count;
             } ?>
 
@@ -78,28 +78,28 @@ if (post_password_required()) {
     $req = get_option('require_name_email');
     $aria_req = ($req ? " aria-required='true'" : '');
     $fields = array(
-        'author' => '<div class="comment-form-author uk-width-1-1 uk-width-1-2@s uk-position-relative">' . '<label for="author">' . __('') . '</label> ' .
-            '<input id="author" class="uk-input commentName field" placeholder="Iм`я*" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></div>',
-        'email' => '<div class="comment-form-email uk-width-1-1 uk-width-1-2@s uk-position-relative"><label for="email">' . __('') . '</label> ' .
-            '<input id="email" class="uk-input commentMail field" placeholder="Email*" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></div>',
+        'author' => '<div class="comment-form-author col-12 col-md-6 position-relative">' .
+            '<input id="author" class="uk-input commentName field p-1" placeholder="Iм`я*" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></div>',
+        'email' => '<div class="comment-form-email col-12 col-md-6 position-relative">' .
+            '<input id="email" class="uk-input commentMail field p-1" placeholder="Email*" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></div>',
     );
     $comments_args = array(
         'fields' => $fields,
         'label_submit' => 'Залишити коментар',
         'class_submit' => 'uk-button-more commentSubmit',
-        'submit_field' => '<p class="form-submit uk-margin-medium-top uk-margin-medium-bottom">%1$s %2$s</p>',
+        'submit_field' => '<p class="col-md-12 form-submit my-4">%1$s %2$s</p>',
         'title_reply' => '',
-        'class_form' => 'commentForm comment-form uk-grid',
+        'class_form' => 'commentForm comment-form row',
         'comment_notes_after' => '',
         'title_reply' => __(''),
         'title_reply_to' => __('Вiдповiсти %s'),
         'title_reply_before' => '',
-        'comment_notes_before' => '<p class="uk-before-notes">Ваш e-mail не буде опублікований. Обов\'язкові поля помічені *</p>',
-        'comment_notes_after'  => '',
+        'comment_notes_before' => '<p class="col-md-12 uk-before-notes">Ваш e-mail не буде опублікований. Обов\'язкові поля помічені *</p>',
+        'comment_notes_after' => '',
         'cancel_reply_before' => ' <small>',
         'cancel_reply_after' => '</small>',
         'cancel_reply_link' => __('Вiдмiнити вiдповiдь'),
-        'comment_field' => '<div class="comment-form-comment uk-width-1-1  uk-position-relative"><label for="comment">Залиште своє питання або відгук</label><br /><textarea id="comment" class="uk-textarea uk-margin-small-top commentMessage field" rows="5" placeholder="Текст повiдомлення* ..." name="comment" aria-required="true"></textarea></div>',
+        'comment_field' => '<div class="comment-form-comment col-md-12 position-relative"><label for="comment">Залиште своє питання або відгук</label><br /><textarea id="comment" class="uk-textarea mt-3 commentMessage field" rows="5" placeholder="Текст повiдомлення* ..." name="comment" aria-required="true"></textarea></div>',
     );
     comment_form($comments_args);
     ?>

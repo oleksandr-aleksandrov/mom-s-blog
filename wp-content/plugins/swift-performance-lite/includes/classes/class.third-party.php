@@ -37,6 +37,9 @@ class Swift_Performance_Third_Party {
                   define('SWIFT_PERFORMANCE_DISABLE_CACHE', true);
             }
 
+            // Sitepress domain mapping
+            add_filter('swift_performance_enabled_hosts', array(__CLASS__, 'sitepress_domain_mapping'));
+
       }
 
       /**
@@ -65,6 +68,22 @@ class Swift_Performance_Third_Party {
             if (function_exists('sg_cachepress_purge_cache')) {
                   sg_cachepress_purge_cache();
             }
+      }
+
+      /**
+       * Add filter for enabled hosts
+       * @param array $hosts
+       * @return array
+       */
+      public static function sitepress_domain_mapping($hosts){
+            global $sitepress;
+            if (!empty($sitepress) && is_callable(array($sitepress, 'get_setting'))){
+                  $domains = $sitepress->get_setting( 'language_domains', array() );
+                  if (!empty($domains)){
+                        $hosts = array_merge($hosts, $domains);
+                  }
+            }
+            return $hosts;
       }
 
 }

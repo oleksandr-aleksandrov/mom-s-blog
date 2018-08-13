@@ -71,6 +71,18 @@ Swift Performance is a cache and performance booster plugin. It can speed up you
 
 == Changelog ==
 
+= 1.8.5 =
+[FIX] Warmup Table cache status
+[IMPROVE] Optimize Warmup Table on Dashboard
+[IMPROVE] Minor improvements
+[IMPROVE] WPML Multi-domains handling
+
+= 1.8.3 =
+[FIX] Cache Status table issues
+[IMPROVE] Minor improvements
+[IMPROVE] Setup Wizard
+[IMPROVE] CDN manager
+
 = 1.8.2 =
 [FIX] Early loader fix
 [IMPROVE] Auto configure

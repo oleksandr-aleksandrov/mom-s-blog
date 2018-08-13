@@ -158,8 +158,11 @@ class Swift_Performance_Asset_Manager {
 	public function asset_manager_callback($buffer){
              // Don't play with assets if the current page is not cacheable
              if (!Swift_Performance_Asset_Manager::should_optimize()){
-                   Swift_Performance_Lite::log('Skip asset merging, current page is not cacheable. URL:' . $_SERVER['REQUEST_URI'] . ', Request:' . serialize($_REQUEST), 6);
-                   return $buffer;
+			$path	= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+			$id	= Swift_Performance_Lite::get_warmup_id(Swift_Performance_Lite::home_url() . trim($path, '/'));
+ 			Swift_Performance_Lite::mysql_query('UPDATE ' . SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup SET type = "error" WHERE id="' . $id . '" LIMIT 1');
+                  Swift_Performance_Lite::log('Skip asset merging, current page is not cacheable. URL:' . $_SERVER['REQUEST_URI'] . ', Request:' . serialize($_REQUEST), 6);
+                  return $buffer;
              }
              $critical_css     = $js = $early_js = $late_js = '';
              $css              = $late_import = $lazyload_scripts_buffer = array();
@@ -172,8 +175,14 @@ class Swift_Performance_Asset_Manager {
                    if (strlen($buffer) > SWIFT_MAX_FILE_SIZE){
        			$info .= 'Max buffer size (' . SWIFT_MAX_FILE_SIZE . ' bytes) was exceeded: '. strlen($buffer) . ' bytes';
        		}
-                   Swift_Performance_Lite::log('DOM parser failed' . $info, 1);
-                   return $buffer;
+			$path	= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+ 			$id	= Swift_Performance_Lite::get_warmup_id(Swift_Performance_Lite::home_url() . trim($path, '/'));
+			Swift_Performance_Lite::mysql_query('UPDATE ' . SWIFT_PERFORMANCE_TABLE_PREFIX . 'warmup SET type = "error" WHERE id="' . $id . '" LIMIT 1');
+			Swift_Performance_Lite::log('DOM parser failed' . $info, 1);
+			if (!defined('SWIFT_PERFORMANCE_DISABLE_CACHE')){
+				define('SWIFT_PERFORMANCE_DISABLE_CACHE', true);
+			}
+                  return $buffer;
              }
 
              // Don't merge styles and scripts for AMP pages
@@ -297,7 +306,7 @@ class Swift_Performance_Asset_Manager {
  						// Minify CSS
  	                              if (Swift_Performance_Lite::check_option('minify-css', 1)){
  	            				$_css = preg_replace('~/\*.*?\*/~s', '', $_css);
- 	            				$_css = preg_replace('~\r?\n~', '', $_css);
+ 	            				$_css = preg_replace('~\r?\n~', ' ', $_css);
  	            				$_css = preg_replace('~(\s{2}|\t)~', ' ', $_css);
  	                              }
 
@@ -342,7 +351,7 @@ class Swift_Performance_Asset_Manager {
  						// Minify CSS
  						if (Swift_Performance_Lite::check_option('minify-css', 1)){
  							$_css = preg_replace('~/\*.*?\*/~s', '', $_css);
- 							$_css = preg_replace('~\r?\n~', '', $_css);
+ 							$_css = preg_replace('~\r?\n~', ' ', $_css);
  							$_css = preg_replace('~(\s{2}|\t)~', ' ', $_css);
  						}
 
@@ -687,7 +696,7 @@ class Swift_Performance_Asset_Manager {
  					// Minify CSS
  	                        if (Swift_Performance_Lite::check_option('minify-css', 1)){
  	                              $_css = preg_replace('~/\*.*?\*/~s', '', $_css);
- 	                              $_css = preg_replace('~\r?\n~', '', $_css);
+ 	                              $_css = preg_replace('~\r?\n~', ' ', $_css);
  	                              $_css = preg_replace('~(\s{2}|\t)~', ' ', $_css);
  	                        }
 
@@ -1044,7 +1053,11 @@ class Swift_Performance_Asset_Manager {
                    if (Swift_Performance_Lite::check_option('dns-prefetch-js',1)){
                          preg_match_all('~("|\')(https?:)?(\\\\)?/(\\\\)?/(([a-z0-9\._-]*)\.([a-z0-9\._-]*))~i', $_js, $js_domains);
                    }
-                   preg_match_all('~(src|url)\s?(=|\()("|\'|)?(https?:)?//([^"\'\)]*)("|\'|\))?~', $_html . $css['all'], $other_domains);
+
+			// CSS
+ 			if (isset($css['all'])){
+                   	preg_match_all('~(src|url)\s?(=|\()("|\'|)?(https?:)?//([^"\'\)]*)("|\'|\))?~', $_html . $css['all'], $other_domains);
+ 			}
 
                    $domains = array_merge((array)$stylesheet_domains[3], (array)$js_domains[5], (array)$other_domains[5]);
 
@@ -1225,7 +1238,7 @@ class Swift_Performance_Asset_Manager {
 			$response['body'] = preg_replace_callback('~url\((\'|")?([^\("\']*)(\'|")?\)~', array($this, 'css_realpath_url'), $response['body']);
                   if (Swift_Performance_Lite::check_option('minify-css', 1)){
       			$response['body'] = preg_replace('~/\*.*?\*/~s', '', $response['body']);
-      			$response['body'] = preg_replace('~\r?\n~', '', $response['body']);
+      			$response['body'] = preg_replace('~\r?\n~', ' ', $response['body']);
       			$response['body'] = preg_replace('~(\s{2,}|\t)~', ' ', $response['body']);
                   }
                   $GLOBALS['swift_css_realpath_basepath'] = $swift_css_realpath_basepath;
